@@ -1,0 +1,330 @@
+commit c3240f287e42b38809387ee977bda10eb0e66b0b
+Author: TheScarastic <warabhishek@gmail.com>
+Date:   Tue Feb 13 14:47:27 2018 +0530
+
+    Revert "cryptfs_hw: Move to /vendor"
+    
+    This reverts commit 3054ec0a85887d6a4aa3630b502183e9875ce9c9.
+    
+    Change-Id: Ia8f40158e08675f2a0229ea78d13df066b2668b5
+
+commit 3054ec0a85887d6a4aa3630b502183e9875ce9c9
+Author: Michael Bestas <mkbestas@lineageos.org>
+Date:   Wed Dec 20 23:12:52 2017 +0200
+
+    cryptfs_hw: Move to /vendor
+    
+    Change-Id: I9f0934d22d9e2001e61e3906af958d7300a8c0e4
+
+commit 4b8e73d0aec6dbf4f4ccde4a0e95fae3f09fcba9
+Author: Michael Bestas <mkbestas@lineageos.org>
+Date:   Wed Dec 20 22:07:16 2017 +0200
+
+    cryptfs_hw: Featureize support for waiting on QSEE to start
+    
+    * Match keymaster change to support older blobs
+    
+    Change-Id: I2d45fe60e0f4bf076d064d6c432740af0b3c840c
+
+commit f51f69d5c7f7880c1adb4d620fb40161b2984170
+Author: Michael Bestas <mkbestas@lineageos.org>
+Date:   Wed Dec 20 19:12:59 2017 +0200
+
+    cryptfs_hw: Add compatibility for pre-O hw crypto
+    
+    * Restore compatibility for pre-O way of hw crypto
+      interaction with qsee as the new way is not
+      compatible with old blobs.
+    * Old blobs and current OSS keymaster still use the
+      old property to check if qseecomd is loaded.
+    * This conditionally reverts:
+      cryptfs_hw: Add new APIs for key management
+      84ac4882d6feeceb24e983a4eaba1d148c2ba3e6
+      cryptfs_hw: Use HW keymaster for FDE keys
+      a5d3a02eb13362490222ac2a7eefde6543546e31
+      cryptfs_hw: Wait for qseecom daemon to start FDE operation
+      b01c6ec9373bee3e9d71d2300ebce7c287c3d687
+    
+    Change-Id: I9a5db406c16c3610237a1b85fbfab5c0d63e4960
+
+commit 2ab4e3f1067e4e18ace7c3106d826e751e0a2c9d
+Author: Neeraj Soni <neersoni@codeaurora.org>
+Date:   Sat Sep 2 13:38:18 2017 +0530
+
+    cryptfs_hw: Wait for qseecom daemon to start FDE operation
+    
+    FDE operation requires listener services. Qseecom daemon
+    should be up and running to ensure all listeners are
+    registered and running.
+    
+    Change-Id: I45637fe25a4ccc9a9ae4939449d310b9a7313e10
+    Signed-off-by: Neeraj Soni <neersoni@codeaurora.org>
+
+commit 5d42fe57c3223c18a5ff612c7fa51876e9c5e202
+Author: AnilKumar Chimata <anilc@codeaurora.org>
+Date:   Fri Aug 25 22:41:49 2017 +0530
+
+    cryptfs_hw: Use HW keymaster for FDE keys
+    
+    Use hardware keymsater for hardware FDE keys to increase the
+    key complexity to avoid attacks.
+    
+    Change-Id: If4c1b84796b2f01331a3ef3f93c3a7af8af00f29
+
+commit 048a8a51f3db14b86167150921e7e5d7d7d7ab7f
+Author: AnilKumar Chimata <anilc@codeaurora.org>
+Date:   Mon Jul 3 18:31:51 2017 +0530
+
+    cryptfs_hw: Fix compilation error
+    
+    Fix compilation error for qseecom.h which encountered while
+    creating the clean build.
+    
+    Change-Id: I1271866d453f0f3d60bfc23ac12819b1cd0cabea
+
+commit 7c9d336fa81aaf2e481ee958402c71526059b861
+Author: AnilKumar Chimata <anilc@codeaurora.org>
+Date:   Thu Jun 22 23:55:07 2017 +0530
+
+    cryptfs_hw: Add new APIs for key management
+    
+    Add new APIs for create, wipe and update keys, which is
+    required for HW based Full Disk Encryption.
+    
+    Change-Id: I483ce1a734db7b7cbfb2a06fe74baf559cfb51fb
+
+commit 5bbd79ba912159df838b27f8608f9b44ab040f17
+Author: Brahmaji K <bkomma@codeaurora.org>
+Date:   Mon Feb 20 20:16:28 2017 +0530
+
+    cryptfs_hw: Remove android reboot during password check
+    
+    After reaching the maximum number of retires with wrong password,
+    userdata is erased based on the info written on /cache partition.
+    As per the latest changes of A/B, cache partition is not present
+    which leads to failure of userdata wipe before reboot. This patch
+    removes reboot from cryptfs_hw layer if max entries reached, as
+    frameworks take care of userdata wipe.
+    
+    Change-Id: If97f2f7452beb004f44d7d41d1d76def23fe2720
+
+commit 6e3227e42a45e26fc97ad46fd65541cab63032e8
+Author: AnilKumar Chimata <anilc@codeaurora.org>
+Date:   Thu May 25 13:17:05 2017 +0530
+
+    cryptfs_hw: Add liblog for logging
+    
+    Add liblog to cryptfs_hw to compile the adb log message related
+    functions to enable logging.
+    
+    Change-Id: Ibc6b8617431cae687d964d1ab56ac25e1b1b96f2
+
+commit da6e595c73cf7c8c45d5933ce0f2efe50229cf33
+Author: Brahmaji K <bkomma@codeaurora.org>
+Date:   Mon Apr 24 13:02:15 2017 +0530
+
+    cryptfs_hw: Fix stack out of bound issue
+    
+    Add strnlen() instead of strlen() to fix the buffer overflow
+    while processing the password.
+    
+    Change-Id: I5996bb62980741b7463c8829a43524e79abc4f19
+
+commit 144e832ff3e16af20d3975aeec4a64bf8f80a8a3
+Author: AnilKumar Chimata <anilc@codeaurora.org>
+Date:   Thu Dec 18 00:27:44 2014 +0530
+
+    cryptfs_hw: Add support for is_hw_fde_enabled routine
+    
+    Add support for is_hw_fde_enabled routine to get the fde
+    status based on the chipset.
+    
+    Change-Id: I7e0e078da6668e347a78de487da44ddc331bd478
+
+commit d1e1e0b06131fb6fb88e3d570f479e89db56406d
+Author: AnilKumar Chimata <anilc@codeaurora.org>
+Date:   Fri May 22 12:53:45 2015 +0530
+
+    cryptfs_hw: Remove keymaster partition check
+    
+    As the partition names are changing from branch to branch, device
+    FDE key is not wrapped with Hw keymaster which is less secure.
+    So removing the partition name related checks to avoid failures.
+    
+    Change-Id: If181b093122479ca57ff6846b10d6aa2fb3eaa0c
+
+commit 8d14c48ec1a01c97ae70443a39126939950a28f4
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Thu Jan 21 12:55:52 2016 -0800
+
+    Cleanup temporarily stored passwords
+    
+    While verifying or updating passwords, those are copied into temp
+    variables which are freed after use. These variables should be
+    cleaned up before freeing so that passwords are not left in memory
+    if someone dumps the memory.
+    
+    Change-Id: I94f76f679bac18a682c796fe98236549e8f5e1aa
+
+commit 3494750761d3d867ea01144ba4c7fb7e4138c55b
+Author: Brahmaji K <bkomma@codeaurora.org>
+Date:   Mon Mar 7 11:13:17 2016 +0530
+
+    cryptfs_hw: update the listener property with keymaster property
+    
+    Replace the sys.listener.registered with sys.keymaster.loaded
+    because the keymaster loading is the final operation done by
+    the qseecomd and key operations should wait till the qseecomd
+    initialization completes.
+    
+    Change-Id: I78a2a6941058f8ec6197ef88b324f6178f7ae2fb
+
+commit f09ae181c55ab6cf1a3af4be11031a27e0fe3915
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Wed Oct 28 14:41:10 2015 -0700
+
+    Wait for QSEECom listeners before calling KMS APIs
+    
+    Sometime it is possible that KMS APIs are invoked and QSEECom
+    listeners are not up. This would cause failure from secure side
+    and KMS API will fail eventually. This change waits for QSEECom
+    listeners to be up before calling KMS APIs. If QSEECom listeners
+    are not up even after wait period, API would fail without going
+    to secure side.
+    
+    Change-Id: I211248645f92fc0fcfe6f250cb1f26661f5fb06c
+
+commit 55fd88fafa074b54a1c455f3692a0853662d87b2
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Wed Sep 2 13:45:15 2015 -0700
+
+    cryptfs_hw: Tie HW FDE keys with keymaster
+    
+    HW FDE keys would be tied to keymaster so that if someone changes
+    Root of Trust (ROT), encrypted data can't be used. Cryptfs_hw module
+    is exposing a new API so that caller can determine whether to create
+    dependency between HW FDE keys and keymaster.
+    
+    Change-Id: I85c85ffd9086f6c060032e4ae701b10363d88529
+
+commit 7223712c2a10e8b55e61231bca34ea00b6732eaf
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Thu Aug 20 17:18:48 2015 -0700
+
+    cryptfs_hw: Update module as per vold project
+    
+    Update cryptfs_hw API signatures as per the vold project
+    requests to avoid compilation errors.
+    
+    Change-Id: I1c2133f3cee395892e7fa160afc6314059ba0bcb
+
+commit 0e645431a808d8742665df12aceff0a929793cb3
+Author: Chiou-Hao Hsu <chsu@codeaurora.org>
+Date:   Mon Jul 13 14:57:28 2015 -0700
+
+    cryptfs_hw: add string.h
+    
+    Change-Id: I7f64400bfa33dcb87d2c6260b8a055d0262f7511
+
+commit 0b9f6f6fc7acc44d6d99a24ec224d123d6f6b456
+Author: AnilKumar Chimata <anilc@codeaurora.org>
+Date:   Fri May 22 12:53:45 2015 +0530
+
+    cryptfs_hw: Update APIs to take old password
+    
+    Update cryptfs_hw APIs to take old password along with the new
+    passowrd.
+    
+    Change-Id: Ieca5c4bac36ba4bb2371d2f3bbe0cadf79e256d7
+
+commit 53ae3b48568b97117d81cfb3ea938f8a3a4acb5d
+Author: AnilKumar Chimata <anilc@codeaurora.org>
+Date:   Wed Dec 10 01:14:16 2014 +0530
+
+    cryptfs_hw: Add support for wipe_key routine
+    
+    Add support for wipe_key routine to clean key.
+    
+    Change-Id: I9e258e1506d0634c4fc5b5142475005f6eb51c4e
+
+commit 1ecf84f4002cc250ce688e18d43547b07b86234b
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Tue May 12 15:40:05 2015 -0700
+
+    Adding support for eMMC based ICE
+    
+    ICE (Inline Crypto Engine) encrypts/decrypts storage IO requests to
+    minimize degradation in storage IO throughput. ICE has been added to
+    eMMC based storage hardware as well. Adding required support for eMMC
+    based ICE.
+    
+    Change-Id: I7986d95ccabca9d6d029653c804608e7d78ad9ef
+
+commit 2fc15a02e5d1c7ea4f8cc55818e49858e5ca8fc4
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Wed Oct 8 17:43:05 2014 -0700
+
+    Adding support of Inline Crypto Engine (ICE)
+    
+    ICE requires keys to be set in key LUT. Changing APIs so that it
+    return the key index in key LUT. It also needs to take care if
+    ICE is available on the chip.
+    
+    Change-Id:  I22be18738ba33e5b5c61639c24b320484d0ad7f2
+
+commit d48e2a056cfaf5e8d7e891a682cec8f562732aad
+Author: Sri Krishna Chaitanya Madireddy <smadir@codeaurora.org>
+Date:   Fri May 16 17:03:57 2014 -0700
+
+    qcom/common: Added O_NOFOLLOW to avoid follow the symlink
+    
+    open system call is added with NOFOLLOW flag
+    
+    Change-Id: I402643635e3ee11b3ac5df63c3b71a9fd6f0d2db
+
+commit 9cccca7472e8b2b7c13a06e69bc1350e6a1a9294
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Thu Sep 11 10:55:02 2014 -0700
+
+    Port cryptfs_hw library to 64bit platform
+    
+    64 bit platform generates library at a different path compared to
+    32 bit platform.Added macros to take care of both kind of platforms.
+    
+    Change-Id: Ie32b8edaeb9f8f34095c7f18c4add83fe957d82a
+
+commit cba11e0f9fd333594c463111998a5d466bd39519
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Thu Feb 27 13:56:58 2014 -0800
+
+    Wrong function pointer usage
+    
+    qseecom_create_key which is a function pointer is used after
+    dereferencing it. Also fixed the issue where userdata may not be
+    wiped after certain number of attemps.
+    
+    Change-Id: I4d14366e33c09da64f89000a16b7eef7d981cfda
+
+commit a0624c1c576eea574092362885cb4ba41b0ea58d
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Mon Feb 3 14:03:33 2014 -0800
+
+    Place library in vendor folder on device
+    
+    All vendors developed libraries must be in vendor folder on
+    device. Using appropriate directive to accomplish the objective.
+    
+    Change-Id: I4ed413b799c0b66a86321f799713068776fa538a
+
+commit ffb80b2c0a2f614941657a6952630c6523da26d2
+Author: Dinesh K Garg <dineshg@codeaurora.org>
+Date:   Mon Jan 20 13:55:32 2014 -0800
+
+    vold: HW based device encryption
+    
+    SW based device encryption uses SW crypto engine. This module
+    provides the support for VOLD to utilize HW crypto engine. HW
+    based crypto engine is more efficient both in terms of power
+    and throughput.
+    
+    Change-Id: I34107a0ce50d9fc5c80c15ace0678a0bba7adee5
