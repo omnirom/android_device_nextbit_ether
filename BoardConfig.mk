@@ -164,4 +164,13 @@ TARGET_HW_DISK_ENCRYPTION := true
 # sepolicy
 include device/qcom/sepolicy/sepolicy.mk
 
+# TWRP
+TW_THEME := portrait_hdpi
+TW_INCLUDE_CRYPTO := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
 -include vendor/nextbit/ether/BoardConfigVendor.mk 
