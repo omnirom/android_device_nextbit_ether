@@ -1,0 +1,83 @@
+# WeiHungChen,[NBQ-787]:Modify selinux for the audio selftest of FQC
+import /init.fih.fqcaudio.rc
+# WeiHungChen,[NBQ-127]:porting smart Amp.
+import /init.nbq.smartamp.rc
+# NBQ - lunyikuo - [06-701]
+import /init.nbq.fj_isp.rc
+import init.qcom.log.rc
+# NBQ - [06-701]
+
+#BudaChiou added for NBQ screen mode
+import /init.nbq.lcm.rc
+
+#NBQ-788 porting FIH SSR mechanism +++
+on post-fs-data
+	# set flag if the device in FTM
+    setprop ro.factory.mode 0
+    setprop persist.sys.ssr.restart_level 3
+    #Ensure subsystem restart level is related
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
+
+	start ssr_diag
+
+	#enable SSR
+on property:persist.sys.fih.ramdump_ssr=1
+    mkdir /data/ramdump 0770 system shell
+    write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
+    start ssr_ramdump
+
+	#disable SSR
+on property:persist.sys.fih.ramdump_ssr=0
+    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
+    stop ssr_ramdump
+
+	#subsystem_ramdump as a SSR restart monitor & ramdump generator
+service ssr_ramdump /system/bin/subsystem_ramdump 1 &
+	user root
+	group root
+	disabled
+	
+#NBQ-788 porting FIH SSR mechanism ---
+
+
+on post-fs
+    # NBQ - lunyikuo - [06-301]
+    mkdir /data/anr
+    chown root system /data/anr
+    chmod 775 /data/anr
+    # end NBQ - [06-301]
+
+on post-fs-data
+service wbg_service /system/bin/sh /system/etc/wbg_bt.sh
+    user root
+    disabled
+    oneshot
+
+on property:persist.sys.wbg.bt.service=true
+    start wbg_service
+
+# msm specific files that need to be created on /data
+on post-fs-data
+    mkdir /data/nfc
+    mkdir /etc/param
+    start nfc-default-sh
+
+# permissions for NFC
+on boot
+    setprop ro.nfc.port "I2C"
+    chmod 0660 /dev/pn544
+    chown nfc nfc /dev/pn544
+	chmod 0666 /dev/fpc1020
+	chown system system /dev/fpc1020
+
+service nfc-default-sh /system/bin/sh /init.nfc_default.sh
+    disabled
+    class core
+    user root
+    oneshot
+
+    # execute script to set initial CPU settings
+    # don't run as a service to avoid race conditions
+    exec - root root system -- /system/bin/init.robin.power.sh

@@ -1,0 +1,11 @@
+on post-fs-data
+    # Mounting of securefs is moved to 'on emmc-fs' and 'on fs' sections
+    # We chown/chmod /securefs again so because mount is run as root + defaults
+    chown system system /sys/class/input/mouse0/device/test
+    restorecon /sys/class/input/mouse0/device/test
+    chown system system /sys/class/input/mouse0/device/doreflash
+    restorecon /sys/class/input/mouse0/device/doreflash
+    chown system system /sys/class/input/mouse0/device/appupgrade
+    restorecon /sys/class/input/mouse0/device/appupgrade
+    chown system system /sys/class/input/mouse0/device/lcm_version
+    restorecon /sys/class/input/mouse0/device/lcm_version

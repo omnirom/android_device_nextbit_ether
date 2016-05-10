@@ -1,0 +1,22 @@
+on fs
+#   /*+++FIH:StanleyCheng 2011/12/20+++*/
+# Mount virtual cd-rom.
+    mkdir /hidden 0770 system system
+    mount ext4 /dev/block/platform/soc.0/f9824900.sdhci/by-name/hidden /hidden nosuid nodev barrier=1
+    chown system hidden /hidden
+    chmod 0551 /hidden
+
+# Mount CDA image.
+    mkdir /hidden/data 0770 system system
+    mount ext4 /dev/block/platform/soc.0/f9824900.sdhci/by-name/cda /hidden/data nosuid nodev barrier=1
+    chown system system /hidden/data
+    chmod 0551 /hidden/data
+    # Fihtdc@20131123 YiYu add for [RFY-2271]:Fix MultiCDA load property fail at first boot
+    exec /system/bin/sh /init.qcom.pre-cda.sh
+#   /*+++FIH:StanleyCheng 2011/12/20---*/
+
+on property:sys.boot_completed=1
+    losetup /dev/block/cdrom-loop /hidden/custom.iso
+    write /sys/class/android_usb/f_mass_storage/lun0/file /dev/block/cdrom-loop
+
+
