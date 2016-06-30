@@ -29,8 +29,6 @@ import init.qcom.usb.rc
 import init.target.rc
 #MilesCKHsieh, add for FIH init rc Begin
 import /init.qcom.target.rc
-import /init.qcom.device.rc
-import /init.qcom.product.rc
 #MilesCKHsieh, add for FIH init rc End
 
 on early-init
@@ -51,10 +49,6 @@ on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
     # Allow subsystem (modem etc) debugging
-    write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
-    write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
-    write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}
-    write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
     write /sys/kernel/boot_adsp/boot 1
     exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
 
@@ -434,10 +428,6 @@ service rfs_access /system/bin/rfs_access
    user root
    group system net_raw
 
-service tftp_server /system/bin/tftp_server
-   class core
-   user root
-
 on property:wc_transport.start_hci=true
     start start_hci_filter
 
@@ -455,12 +445,6 @@ on property:wc_transport.start_root=true
 
 on property:wc_transport.start_root=false
     stop hci_filter_root
-
-service hci_filter_root /system/bin/wcnss_filter
-    class late_start
-    user bluetooth
-    group bluetooth qcom_diag system
-    disabled
 
 service config_bt_addr /system/bin/btnvtool -O
     class core

@@ -2,9 +2,6 @@
 import /init.fih.fqcaudio.rc
 # WeiHungChen,[NBQ-127]:porting smart Amp.
 import /init.nbq.smartamp.rc
-# NBQ - lunyikuo - [06-701]
-import /init.nbq.fj_isp.rc
-import init.qcom.log.rc
 # NBQ - [06-701]
 
 #BudaChiou added for NBQ screen mode

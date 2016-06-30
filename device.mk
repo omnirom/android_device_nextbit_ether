@@ -91,12 +91,9 @@ PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/init.nbq.smartamp.sh:root/init.nbq.smartamp.sh \
     device/nextbit/ether/rootdir/init.nbq.target.rc:root/init.nbq.target.rc \
     device/nextbit/ether/rootdir/init.nfc_default.sh:root/init.nfc_default.sh \
-    device/nextbit/ether/rootdir/init.qcom.cda.rc:root/init.qcom.cda.rc \
     device/nextbit/ether/rootdir/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
     device/nextbit/ether/rootdir/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
-    device/nextbit/ether/rootdir/init.qcom.factory.sh:root/init.qcom.factory.sh \
     device/nextbit/ether/rootdir/init.qcom.fs.rc:root/init.qcom.fs.rc \
-    device/nextbit/ether/rootdir/init.qcom.log.rc:root/init.qcom.log.rc \
     device/nextbit/ether/rootdir/init.target.rc:root/init.target.rc \
     device/nextbit/ether/rootdir/init.qcom.rc:root/init.qcom.rc \
     device/nextbit/ether/rootdir/init.qcom.sh:root/init.qcom.sh \

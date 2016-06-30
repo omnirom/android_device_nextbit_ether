@@ -2,8 +2,6 @@ import /init.qcom.fs.rc
 # init LED related rc into rootdir (DanielYJ,fihtdc@20130914)
 #import /init.qcom.led.rc
 #import /init.icatch.camera.rc
-# fihtdc, CurtisHCChi, 20131007, add for subsystem ramdump
-#import /init.qcom.ssr_ramdump.rc
 # init BT related rc into rootdir (TommyYSHung,fihtdc@20131118)
 #import /init.qcom.misc.rc
 # SW4-HL-Display-ImplementColorEnhancement-00+_20131203
@@ -13,9 +11,5 @@ import /init.qcom.fs.rc
 # fihtdc, danielyjhsieh, 20141205, add for FQC audio loopback
 #import /init.fih.fqcaudio.rc
 #import /init.qcom.sensor.rc
-# fihtdc, kunfengkao, 20150325, add for cd-rom
-import /init.qcom.cda.rc
-# fihtdc, DanielPYLiao, 20150428, add for IP2 log
-#import /init.qcom.log.rc
 #add for NBQ and FAG
 import /init.${ro.boot.device}.target.rc

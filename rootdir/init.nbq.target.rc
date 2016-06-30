@@ -30,8 +30,4 @@ import /init.nbq.fs.rc
 import /init.nbq.led.rc
 import /init.nbq.charger.rc
 import /init.nbq.poweroff_charging.rc
-
-# IrisChen, 20150915, add for log 
-#import /init.qcom.log.rc
-
 import /init.nbq.fingerprint.rc
