@@ -192,7 +192,8 @@ set_light_battery(struct light_device_t* dev,
     if (bars == g_battery_bars)
         goto out;
 
-    for (int i = 1; i <= NUM_LED_SEGMENTS; i++) {
+    int i = 1;
+    for (i = 1; i <= NUM_LED_SEGMENTS; i++) {
         brightness = (bars >= i) ? SEGMENT_BRIGHTNESS : 0;
         snprintf(buf, sizeof(buf), "%d %d", i, brightness);
         ALOGV("%s: %d = %s (bars=%d)", __func__, i, buf, bars);
