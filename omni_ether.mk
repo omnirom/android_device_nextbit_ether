@@ -1,3 +1,7 @@
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+
 # Exclude Live Wallpapers
 TARGET_EXCLUDE_LIVEWALLPAPERS := true
 
@@ -10,8 +14,12 @@ $(call inherit-product, vendor/omni/config/gsm.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+# Inherit proprietary device parts
+$(call inherit-product, vendor/nextbit/ether/device-vendor.mk)
+
+# Copy TWRP fstab - TWRP requires fstab v1
+PRODUCT_COPY_FILES += \
+    device/nextbit/ether/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Override product naming for Omni
 PRODUCT_NAME := omni_ether
