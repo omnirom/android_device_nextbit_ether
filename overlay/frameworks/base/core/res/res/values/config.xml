@@ -405,7 +405,4 @@
         <item>dnd</item>
     </string-array>
 
-    <!-- Enable blur support -->
-    <bool name="config_ui_blur_enabled">true</bool>
-
 </resources>
