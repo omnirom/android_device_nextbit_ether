@@ -31,6 +31,31 @@ $(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.m
 # setup base hwui configs
 $(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-hwui-memory.mk)
 
+# Init
+PRODUCT_COPY_FILES += \
+    device/nextbit/ether/rootdir/fstab.qcom:root/fstab.qcom \
+    device/nextbit/ether/rootdir/init.nbq.charger.rc:root/init.nbq.charger.rc \
+    device/nextbit/ether/rootdir/init.nbq.fingerprint.rc:root/init.nbq.fingerprint.rc \
+    device/nextbit/ether/rootdir/init.nbq.led.rc:root/init.nbq.led.rc \
+    device/nextbit/ether/rootdir/init.nbq.nfc.rc:root/init.nbq.nfc.rc \
+    device/nextbit/ether/rootdir/init.nbq.poweroff_charging.rc:root/init.nbq.poweroff_charging.rc \
+    device/nextbit/ether/rootdir/init.nbq.smartamp.rc:root/init.nbq.smartamp.rc \
+    device/nextbit/ether/rootdir/init.nbq.target.rc:root/init.nbq.target.rc \
+    device/nextbit/ether/rootdir/init.nbq.usb.rc:root/init.nbq.usb.rc \
+    device/nextbit/ether/rootdir/init.qcom.fs.rc:root/init.qcom.fs.rc \
+    device/nextbit/ether/rootdir/init.qcom.rc:root/init.qcom.rc \
+    device/nextbit/ether/rootdir/init.qcom.sh:root/init.qcom.sh \
+    device/nextbit/ether/rootdir/init.target.rc:root/init.target.rc \
+    device/nextbit/ether/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
+
+PRODUCT_COPY_FILES += \
+    device/nextbit/ether/rootdir/bin/init.nbq.mac.sh:system/bin/init.nbq.mac.sh \
+    device/nextbit/ether/rootdir/bin/init.nbq.power.sh:system/bin/init.nbq.power.sh
+
+PRODUCT_COPY_FILES += \
+    device/nextbit/ether/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
+
+
 # ANT+
 #PRODUCT_PACKAGES += \
 #    AntHalService \
@@ -130,21 +155,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     lights.msm8992
 
-PRODUCT_PACKAGES += \
-    init.nbq.charger.rc \
-    init.nbq.fingerprint.rc \
-    init.nbq.led.rc \
-    init.nbq.mac.sh \
-    init.nbq.nfc.rc \
-    init.nbq.poweroff_charging.rc \
-    init.nbq.smartamp.rc \
-    init.nbq.target.rc \
-    init.nbq.usb.rc \
-    init.qcom.fs.rc \
-    init.qcom.rc \
-    init.qcom.sh \
-    init.target.rc
-
 # Input device files for ether
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
@@ -178,11 +188,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
 
-PRODUCT_PACKAGES += \
-    fstab.qcom \
-    init.qcom.rc \
-    ueventd.qcom.rc
-
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
@@ -193,7 +198,6 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    init.nbq.power.sh \
     power.msm8992
 
 # Audio calibration database
@@ -243,9 +247,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # voip
 PRODUCT_PROPERTY_OVERRIDES += \
     use.voice.path.for.pcm.voip=true
-
-PRODUCT_PACKAGES += \
-    init.qcom.bt.sh
 
 PRODUCT_PROPERTY_OVERRIDES += \
     bluetooth.enable_timeout_ms=12000 \
