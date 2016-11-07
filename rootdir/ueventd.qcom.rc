@@ -208,7 +208,7 @@
 /sys/devices/pci0000:00/0000:00:00.0/0000:01:00.0/net/wlan0/queues/rx-* rps_cpus 0660 system system
 
 #nfc permissions
-/dev/nfc-nci              0660    nfc         nfc
+/dev/pn544                0660    nfc         nfc
 /dev/assd                 0660    nfc         nfc
 
 # UIO devices
