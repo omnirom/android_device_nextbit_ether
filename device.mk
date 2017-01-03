@@ -439,6 +439,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.iwlan.enable=true
 
 # Telephony extension
-PRODUCT_PACKAGES += telephony-ext
-PRODUCT_PACKAGES += ims-ext-common
-PRODUCT_BOOT_JARS += telephony-ext
+#PRODUCT_PACKAGES += telephony-ext
+#PRODUCT_PACKAGES += ims-ext-common
+#PRODUCT_BOOT_JARS += telephony-ext
