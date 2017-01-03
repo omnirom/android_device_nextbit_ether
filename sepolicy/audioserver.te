@@ -1,0 +1,3 @@
+allow audioserver smartamp_device:chr_file { read write };
+allow audioserver smartamp_device:chr_file open;
+allow audioserver smartamp_device:chr_file ioctl;

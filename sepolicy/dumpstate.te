@@ -1,0 +1,2 @@
+allow dumpstate iop_data_file:sock_file create;
+allow dumpstate iop_data_file:sock_file setattr;
