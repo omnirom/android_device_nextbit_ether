@@ -128,9 +128,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.audio.flinger_standbytime_ms=300
 
-PRODUCT_PACKAGES += \
-    SnapdragonCamera
-
 # Camera2 API
 PRODUCT_PROPERTY_OVERRIDES += \
     media.camera.ts.monotonic=0 \
