@@ -28,3 +28,8 @@ allow init-power-sh toolbox_exec:file rx_file_perms;
 allow init-power-sh self:capability sys_module;
 
 allow init-power-sh sysfs:dir read;
+allow init-power-sh rootfs:file read;
+allow init-power-sh sysfs:dir open;
+allow init-power-sh sysfs:file write;
+allow init-power-sh rootfs:file open;
+allow init-power-sh sysfs:file open;
