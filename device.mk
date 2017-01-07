@@ -359,6 +359,9 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2
 
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full
+
 # property for vendor specific library
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
