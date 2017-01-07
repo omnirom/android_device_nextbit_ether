@@ -18,7 +18,6 @@ bin/imscmservice
 bin/imsdatadaemon
 bin/imsqmidaemon
 bin/ims_rtp_daemon
-#bin/iop
 bin/ipacm-diag
 bin/irsc_util
 bin/loc_launcher
@@ -143,7 +142,6 @@ lib64/libFIHNxp.so
 lib64/lib_fpc_tac_shared.so
 -lib64/libloc_api_v02.so
 -lib64/libloc_ds_api.so
-#lib64/libqti-iop.so
 #-lib64/libril.so
 lib64/libtfa98xx_hal.so
 lib64/libtfa98xx.so
@@ -163,7 +161,6 @@ lib/libmm-qcamera.so
 lib/libmorpho_image_stab4.so
 lib/libmorpho_movie_stab4.so
 lib/libqomx_core.so
-#lib/libqti-iop.so
 #-lib/libril.so
 lib/libtfa98xx_hal.so
 lib/libtfa98xx.so
@@ -285,7 +282,6 @@ vendor/lib64/libqmi_encdec.so
 -vendor/lib64/libqmiservices.so
 vendor/lib64/libqmi.so
 vendor/lib64/libQSEEComAPI.so
-#vendor/lib64/libqti-iop-client.so
 vendor/lib64/libqti-perfd-client.so
 vendor/lib64/libQtiTether.so
 vendor/lib64/libquipc_os_api.so
@@ -509,7 +505,6 @@ vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc_pipe.so
 vendor/lib/libqomx_jpegenc.so
 vendor/lib/libQSEEComAPI.so
-#vendor/lib/libqti-iop-client.so
 vendor/lib/libqti-perfd-client.so
 vendor/lib/libquipc_os_api.so
 vendor/lib/librs_adreno_sha1.so
