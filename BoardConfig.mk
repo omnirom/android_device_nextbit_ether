@@ -174,9 +174,6 @@ TARGET_INCREASES_COLDBOOT_TIMEOUT := true
 TARGET_INIT_VENDOR_LIB := libinit_ether
 TARGET_RECOVERY_DEVICE_MODULES := libinit_ether
 
-# Power
-TARGET_POWERHAL_VARIANT := qcom
-
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
 
