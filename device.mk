@@ -195,10 +195,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
-# Power
-PRODUCT_PACKAGES += \
-    power.msm8992
-
 # Audio calibration database
 ACDB_TARGET ?= NBQ
 
