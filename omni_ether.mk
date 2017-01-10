@@ -21,6 +21,9 @@ $(call inherit-product, vendor/nextbit/ether/device-vendor.mk)
 PRODUCT_COPY_FILES += \
     device/nextbit/ether/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.selinux=1
+
 # Override product naming for Omni
 PRODUCT_NAME := omni_ether
 PRODUCT_DEVICE := ether
