@@ -439,6 +439,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.iwlan.enable=true
 
+PRODUCT_PACKAGES += \
+    power.qcom
+
 # Telephony extension
 #PRODUCT_PACKAGES += telephony-ext
 #PRODUCT_PACKAGES += ims-ext-common
