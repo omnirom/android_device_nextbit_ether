@@ -50,7 +50,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/bin/init.nbq.mac.sh:system/bin/init.nbq.mac.sh \
-    device/nextbit/ether/rootdir/bin/init.nbq.power.sh:system/bin/init.nbq.power.sh
+    device/nextbit/ether/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
 
 PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
