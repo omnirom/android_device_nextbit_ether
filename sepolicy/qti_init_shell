@@ -1,0 +1,5 @@
+allow qti_init_shell proc_kernel_sched:file { open write };
+allow qti_init_shell sysfs_performance:dir search;
+allow qti_init_shell sysfs_performance:file { open write };
+allow qti_init_shell sysfs_power_management:file write;
+allow qti_init_shell sysfs_rqstats:dir { open read search };
