@@ -206,6 +206,7 @@ BOARD_HAS_NO_REAL_SDCARD := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
+# PowerHAL
 TARGET_PROVIDES_POWERHAL := true
 
 -include vendor/nextbit/ether/BoardConfigVendor.mk
