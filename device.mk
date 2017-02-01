@@ -105,11 +105,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.acdb.name=NBQ
 
-# fast track settings
-PRODUCT_PROPERTY_OVERRIDES += \
-    af.fast_track_multiplier=1 \
-    audio_hal.period_size=192
-
 # fluence multi-mic solution
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
@@ -209,10 +204,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     audiod \
-    libqcompostprocbundle \
-    libqcomvisualizer \
-    libqcomvoiceprocessingdescriptors \
-    libqcomvoiceprocessing
+    libqcomvoiceprocessingdescriptors
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
