@@ -55,7 +55,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
-
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
@@ -93,7 +92,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
     $(LOCAL_PATH)/audio/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml
-
 
 # features
 PRODUCT_COPY_FILES += \
@@ -429,7 +427,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     power.qcom
 
-# Telephony extension
-#PRODUCT_PACKAGES += telephony-ext
-#PRODUCT_PACKAGES += ims-ext-common
-#PRODUCT_BOOT_JARS += telephony-ext
+PRODUCT_PACKAGES += \
+    SnapdragonCamera
