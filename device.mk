@@ -429,7 +429,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     power.qcom
 
-# Telephony extension
-#PRODUCT_PACKAGES += telephony-ext
-#PRODUCT_PACKAGES += ims-ext-common
-#PRODUCT_BOOT_JARS += telephony-ext
+PRODUCT_PACKAGES += SnapdragonCamera
