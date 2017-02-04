@@ -12,7 +12,7 @@ LOCAL_C_INCLUDES += external/icu/icu4c/source/common
 else
 LOCAL_C_INCLUDES += external/icu4c/common
 endif
-LOCAL_C_INCLUDES += external/dhcpcd-6.8.2
+LOCAL_C_INCLUDES += external/dhcpcd
 LOCAL_C_INCLUDES += external/libxml2/include
 LOCAL_C_INCLUDES += external/libnetfilter_conntrack/include
 LOCAL_C_INCLUDES += external/libnfnetlink/include
@@ -58,7 +58,8 @@ LOCAL_SHARED_LIBRARIES += libxml2
 LOCAL_SHARED_LIBRARIES += libnfnetlink
 LOCAL_SHARED_LIBRARIES += libnetfilter_conntrack
 LOCAL_SHARED_LIBRARIES += libdhcpcd
-#include $(BUILD_EXECUTABLE)
+LOCAL_CLANG := true
+include $(BUILD_EXECUTABLE)
 
 ################################################################################
 
@@ -81,7 +82,7 @@ LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_OWNER := ipacm
-#include $(BUILD_PREBUILT)
+include $(BUILD_PREBUILT)
 
 endif # $(TARGET_ARCH)
 endif
