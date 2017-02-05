@@ -190,6 +190,9 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
 TARGET_PROVIDES_POWERHAL := true
 
+# Props for hotplugging
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
 -include vendor/nextbit/ether/BoardConfigVendor.mk
 
 # Audio configuration file

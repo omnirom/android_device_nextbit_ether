@@ -427,6 +427,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.iwlan.enable=true
 
 PRODUCT_PACKAGES += \
-    power.qcom
+    power.ether
 
 PRODUCT_PACKAGES += SnapdragonCamera

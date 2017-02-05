@@ -29,6 +29,7 @@ import init.nbq.target.rc
 import init.qcom.fs.rc
 import init.target.rc
 import init.omni.rc
+import init.ether.cpuquiet.rc
 
 on early-init
     insmod /sbin/qcrypto_module.ko
