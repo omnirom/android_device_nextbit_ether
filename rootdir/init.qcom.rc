@@ -32,6 +32,7 @@ import init.omni.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
+    chmod 0755 /sys/kernel/debug
 
 on init
     # Set permissions for persist partition
