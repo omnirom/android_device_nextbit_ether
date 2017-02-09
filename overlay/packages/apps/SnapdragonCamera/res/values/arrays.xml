@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+
+<!-- CameraSettings: 4160x3120,3840x2160,3200x2400,2560x1920,2688x1512,2048x1536,1920x1080,1600x1200,1280x960,1280x768,1280x720,1024x768,800x600,864x480,800x480,720x480,640x480,640x360,352x288,320x240 -->
+
+<resources>
+    <!-- Camera Preferences Picture size dialog box entries -->
+    <string-array name="pref_camera_picturesize_entries" translatable="false">
+        <item>(4:3) 13.0 MP</item> <!-- 4160x3120 -->
+        <item>(4:3) 7.7 MP</item> <!-- 3200x2400 -->
+        <item>(4:3) 4.9 MP</item> <!-- 2560x1920 -->
+        <item>(4:3) 3.1 MP</item> <!-- 2048x1536 -->
+        <item>(4:3) 1.9 MP</item> <!-- 1600x1200 -->
+        <item>(4:3) 1.2 MP</item> <!-- 1280x960 -->
+        <item>(4:3) 0.8 MP</item> <!-- 1024x768 -->
+        <item>(4:3) 0.5 MP</item> <!-- 800x600 -->
+        <item>(4:3) 0.3 MP</item> <!-- 640x480 -->
+        <item>(4:3) 0.01 MP</item> <!-- 320x240 -->
+        <item>(3:2) 0.3 MP</item> <!-- 720x480 -->
+        <item>(16:9) 8.3 MP</item> <!-- 3840x2160 -->
+        <item>(16:9) 4.1 MP</item> <!-- 2688x1512 -->
+        <item>(16:9) 2.1 MP</item> <!-- 1920x1080 -->
+        <item>(16:9) 0.9 MP</item> <!-- 1280x720 -->
+        <item>(16:9) 0.2 MP</item> <!-- 640x360 -->
+        <item>(Wide) 0.9 MP</item> <!-- 1280x768 -->
+        <item>(Wide) 0.4 MP</item> <!-- 864x480 -->
+        <item>(Wide) 0.4 MP</item> <!-- 800x480 -->
+        <item>(Wide) 0.1 MP</item> <!-- 352x288 -->
+    </string-array>
+
+    <!-- When launching the camera app first time, we will set the picture
+         size to the first one in the list that is also supported by the
+         driver -->
+    <string-array name="pref_camera_picturesize_entryvalues" translatable="false">
+        <item>4160x3120</item> <!-- 13.0 MP -->
+        <item>3200x2400</item> <!-- 7.7 MP -->
+        <item>2560x1920</item> <!-- 4.9 MP -->
+        <item>2048x1536</item> <!-- 3.1 MP -->
+        <item>1600x1200</item> <!-- 1.9 MP -->
+        <item>1280x960</item> <!-- 1.2 MP -->
+        <item>1024x768</item> <!-- 0.8 MP -->
+        <item>800x600</item> <!-- 0.5 MP -->
+        <item>640x480</item> <!-- 0.3 MP -->
+        <item>320x240</item> <!-- 0.01 MP -->
+        <item>720x480</item> <!-- 0.3 MP -->
+        <item>3840x2160</item> <!-- 8.3 MP -->
+        <item>2688x1512</item> <!-- 4.1 MP -->
+        <item>1920x1080</item> <!-- 2.1 MP -->
+        <item>1280x720</item> <!-- 0.9 MP -->
+        <item>640x360</item> <!-- 0.2 MP -->
+        <item>1280x768</item> <!-- 0.9 MP -->
+        <item>864x480</item> <!-- 0.4 MP -->
+        <item>800x480</item> <!-- 0.4 MP -->
+        <item>352x288</item> <!-- 0.1 MP-->
+    </string-array>
+
+</resources>
