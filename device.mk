@@ -124,7 +124,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera2 API
 PRODUCT_PROPERTY_OVERRIDES += \
-    media.camera.ts.monotonic=0 \
     persist.camera.HAL3.enabled=1
 
 PRODUCT_COPY_FILES += \
@@ -239,7 +238,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.cpp.duplication=false \
     ro.qc.sdk.camera.facialproc=false \
     ro.qc.sdk.gestures.camera=false
 
