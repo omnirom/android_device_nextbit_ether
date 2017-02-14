@@ -430,3 +430,5 @@ PRODUCT_PACKAGES += \
     power.qcom
 
 PRODUCT_PACKAGES += SnapdragonCamera
+
+PRODUCT_PACKAGES += RobinParts
