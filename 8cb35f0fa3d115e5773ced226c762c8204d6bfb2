@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78209991_625a1185",
+        "filename": "RobinParts/src/org/omnirom/device/DeviceSettings.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2017-02-15T15:32:03Z",
+      "side": 1,
+      "message": "default must be 1!",
+      "revId": "8cb35f0fa3d115e5773ced226c762c8204d6bfb2",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
