@@ -50,7 +50,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/bin/init.nbq.mac.sh:system/bin/init.nbq.mac.sh \
-    device/nextbit/ether/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
+    device/nextbit/ether/rootdir/bin/init.ether.power.sh:system/bin/init.ether.power.sh
 
 PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
@@ -427,6 +427,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.iwlan.enable=true
 
 PRODUCT_PACKAGES += \
-    power.qcom
+    power.ether
 
 PRODUCT_PACKAGES += SnapdragonCamera
