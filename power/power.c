@@ -30,6 +30,7 @@
 #define LOG_NIDEBUG 0
 
 #include <errno.h>
+#include <inttypes.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -37,7 +38,7 @@
 #include <dlfcn.h>
 #include <stdlib.h>
 
-#define LOG_TAG "QCOM PowerHAL"
+#define LOG_TAG "QCOMPowerHAL"
 #include <utils/Log.h>
 #include <hardware/hardware.h>
 #include <hardware/power.h>
@@ -47,6 +48,42 @@
 #include "hint-data.h"
 #include "performance.h"
 #include "power-common.h"
+
+#define PLATFORM_SLEEP_MODES 2
+#define XO_VOTERS 3
+#define VMIN_VOTERS 0
+
+#define RPM_PARAMETERS 4
+#define NUM_PARAMETERS 10
+
+#ifndef RPM_STAT
+#define RPM_STAT "/d/rpm_stats"
+#endif
+
+#ifndef RPM_MASTER_STAT
+#define RPM_MASTER_STAT "/d/rpm_master_stats"
+#endif
+
+/* RPM runs at 19.2Mhz. Divide by 19200 for msec */
+#define RPM_CLK 19200
+#define USINSEC 1000000L
+#define NSINUS 1000L
+
+//interaction boost global variables
+static pthread_mutex_t s_interaction_lock = PTHREAD_MUTEX_INITIALIZER;
+static struct timespec s_previous_boost_timespec;
+
+const char *parameter_names[] = {
+    "vlow_count",
+    "accumulated_vlow_time",
+    "vmin_count",
+    "accumulated_vmin_time",
+    "xo_accumulated_duration",
+    "xo_count",
+    "xo_accumulated_duration",
+    "xo_count",
+    "xo_accumulated_duration",
+    "xo_count"};
 
 static int saved_dcvs_cpu0_slack_max = -1;
 static int saved_dcvs_cpu0_slack_min = -1;
@@ -195,7 +232,15 @@ int __attribute__ ((weak)) power_hint_override(struct power_module *module, powe
 }
 
 /* Declare function before use */
-void interaction(int duration, int num_args, int opt_list[]);
+int interaction(int duration, int num_args, int opt_list[]);
+int interaction_with_handle(int lock_handle, int duration, int num_args, int opt_list[]);
+
+static long long calc_timespan_us(struct timespec start, struct timespec end) {
+    long long diff_in_us = 0;
+    diff_in_us += (end.tv_sec - start.tv_sec) * USINSEC;
+    diff_in_us += (end.tv_nsec - start.tv_nsec) / NSINUS;
+    return diff_in_us;
+}
 
 static void power_hint(struct power_module *module, power_hint_t hint,
         void *data)
@@ -211,10 +256,83 @@ static void power_hint(struct power_module *module, power_hint_t hint,
         break;
         case POWER_HINT_INTERACTION:
         {
-            int resources[] = {0x702, 0x20F, 0x30F};
-            int duration = 3000;
+            int duration_hint = 0;
 
-            interaction(duration, sizeof(resources)/sizeof(resources[0]), resources);
+            // little core freq bump for 1.5s
+            int resources[] = {0x20C};
+            int duration = 1500;
+            static int handle_little = 0;
+
+            // big core freq bump for 500ms
+            int resources_big[] = {0x2312, 0x1F08};
+            int duration_big = 500;
+            static int handle_big = 0;
+
+            // sched_downmigrate lowered to 10 for 1s at most
+            // should be half of upmigrate
+            int resources_downmigrate[] = {0x4F00};
+            int duration_downmigrate = 1000;
+            static int handle_downmigrate = 0;
+
+            // sched_upmigrate lowered to at most 20 for 500ms
+            // set threshold based on elapsed time since last boost
+            int resources_upmigrate[] = {0x4E00};
+            int duration_upmigrate = 500;
+            static int handle_upmigrate = 0;
+
+            // set duration hint
+            if (data) {
+                duration_hint = *((int*)data);
+            }
+
+            struct timespec cur_boost_timespec;
+            clock_gettime(CLOCK_MONOTONIC, &cur_boost_timespec);
+
+            pthread_mutex_lock(&s_interaction_lock);
+            long long elapsed_time = calc_timespan_us(s_previous_boost_timespec, cur_boost_timespec);
+
+            if (elapsed_time > 750000)
+                elapsed_time = 750000;
+            // don't hint if it's been less than 250ms since last boost
+            // also detect if we're doing anything resembling a fling
+            // support additional boosting in case of flings
+            else if (elapsed_time < 250000 && duration_hint <= 750) {
+                pthread_mutex_unlock(&s_interaction_lock);
+                return;
+            }
+
+            s_previous_boost_timespec = cur_boost_timespec;
+            pthread_mutex_unlock(&s_interaction_lock);
+
+            // 95: default upmigrate for phone
+            // 20: upmigrate for sporadic touch
+            // 750ms: a completely arbitrary threshold for last touch
+            int upmigrate_value = 95 - (int)(75. * ((elapsed_time*elapsed_time) / (750000.*750000.)));
+
+            // keep sched_upmigrate high when flinging
+            if (duration_hint >= 750)
+                upmigrate_value = 20;
+
+            resources_upmigrate[0] = resources_upmigrate[0] | upmigrate_value;
+            resources_downmigrate[0] = resources_downmigrate[0] | (upmigrate_value / 2);
+
+            // modify downmigrate duration based on interaction data hint
+            // 1000 <= duration_downmigrate <= 5000
+            // extend little core freq bump past downmigrate to soften downmigrates
+            if (duration_hint > 1000) {
+                if (duration_hint < 5000) {
+                    duration_downmigrate = duration_hint;
+                    duration = duration_hint + 750;
+                } else {
+                    duration_downmigrate = 5000;
+                    duration = 5750;
+                }
+            }
+
+            handle_little = interaction_with_handle(handle_little,duration, sizeof(resources)/sizeof(resources[0]), resources);
+            handle_big = interaction_with_handle(handle_big, duration_big, sizeof(resources_big)/sizeof(resources_big[0]), resources_big);
+            handle_downmigrate = interaction_with_handle(handle_downmigrate, duration_downmigrate, sizeof(resources_downmigrate)/sizeof(resources_downmigrate[0]), resources_downmigrate);
+            handle_upmigrate = interaction_with_handle(handle_upmigrate, duration_upmigrate, sizeof(resources_upmigrate)/sizeof(resources_upmigrate[0]), resources_upmigrate);
         }
         break;
         case POWER_HINT_VIDEO_ENCODE:
@@ -376,7 +494,7 @@ void set_interactive(struct power_module *module, int on)
                 (strlen(governor) == strlen(INTERACTIVE_GOVERNOR))) {
             undo_hint_action(DISPLAY_STATE_HINT_ID);
             display_hint_sent = 0;
-        } else if ((strncmp(governor, MSMDCVS_GOVERNOR, strlen(MSMDCVS_GOVERNOR)) == 0) && 
+        } else if ((strncmp(governor, MSMDCVS_GOVERNOR, strlen(MSMDCVS_GOVERNOR)) == 0) &&
                 (strlen(governor) == strlen(MSMDCVS_GOVERNOR))) {
             if (saved_interactive_mode == -1 || saved_interactive_mode == 0) {
                 /* Display turned on. Restore if possible. */
@@ -436,10 +554,125 @@ void set_interactive(struct power_module *module, int on)
     saved_interactive_mode = !!on;
 }
 
+static ssize_t get_number_of_platform_modes(struct power_module *module) {
+   return PLATFORM_SLEEP_MODES;
+}
+
+static int get_voter_list(struct power_module *module, size_t *voter) {
+   voter[0] = XO_VOTERS;
+   voter[1] = VMIN_VOTERS;
+
+   return 0;
+}
+
+static int extract_stats(uint64_t *list, char *file,
+    unsigned int num_parameters, unsigned int index) {
+    FILE *fp;
+    ssize_t read;
+    size_t len;
+    char *line;
+    int ret;
+
+    fp = fopen(file, "r");
+    if (fp == NULL) {
+        ret = -errno;
+        ALOGE("%s: failed to open: %s", __func__, strerror(errno));
+        return ret;
+    }
+
+    for (line = NULL, len = 0;
+         ((read = getline(&line, &len, fp) != -1) && (index < num_parameters));
+         free(line), line = NULL, len = 0) {
+        uint64_t value;
+        char* offset;
+
+        size_t begin = strspn(line, " \t");
+        if (strncmp(line + begin, parameter_names[index], strlen(parameter_names[index]))) {
+            continue;
+        }
+
+        offset = memchr(line, ':', len);
+        if (!offset) {
+            continue;
+        }
+
+        if (!strcmp(file, RPM_MASTER_STAT)) {
+            /* RPM_MASTER_STAT is reported in hex */
+            sscanf(offset, ":%" SCNx64, &value);
+            /* Duration is reported in rpm SLEEP TICKS */
+            if (!strcmp(parameter_names[index], "xo_accumulated_duration")) {
+                value /= RPM_CLK;
+            }
+        } else {
+            /* RPM_STAT is reported in decimal */
+            sscanf(offset, ":%" SCNu64, &value);
+        }
+        list[index] = value;
+        index++;
+    }
+    free(line);
+
+    fclose(fp);
+    return 0;
+}
+
+static int get_platform_low_power_stats(struct power_module *module,
+    power_state_platform_sleep_state_t *list) {
+    uint64_t stats[sizeof(parameter_names)] = {0};
+    int ret;
+
+    if (!list) {
+        return -EINVAL;
+    }
+
+    ret = extract_stats(stats, RPM_STAT, RPM_PARAMETERS, 0);
+
+    if (ret) {
+        return ret;
+    }
+
+    ret = extract_stats(stats, RPM_MASTER_STAT, NUM_PARAMETERS, 4);
+
+    if (ret) {
+        return ret;
+    }
+
+    /* Update statistics for XO_shutdown */
+    strcpy(list[0].name, "XO_shutdown");
+    list[0].total_transitions = stats[0];
+    list[0].residency_in_msec_since_boot = stats[1];
+    list[0].supported_only_in_suspend = false;
+    list[0].number_of_voters = XO_VOTERS;
+
+    /* Update statistics for APSS voter */
+    strcpy(list[0].voters[0].name, "APSS");
+    list[0].voters[0].total_time_in_msec_voted_for_since_boot = stats[4];
+    list[0].voters[0].total_number_of_times_voted_since_boot = stats[5];
+
+    /* Update statistics for MPSS voter */
+    strcpy(list[0].voters[1].name, "MPSS");
+    list[0].voters[1].total_time_in_msec_voted_for_since_boot = stats[6];
+    list[0].voters[1].total_number_of_times_voted_since_boot = stats[7];
+
+    /* Update statistics for LPASS voter */
+    strcpy(list[0].voters[2].name, "LPASS");
+    list[0].voters[2].total_time_in_msec_voted_for_since_boot = stats[8];
+    list[0].voters[2].total_number_of_times_voted_since_boot = stats[9];
+
+    /* Update statistics for VMIN state */
+    strcpy(list[1].name, "VMIN");
+    list[1].total_transitions = stats[2];
+    list[1].residency_in_msec_since_boot = stats[3];
+    list[1].supported_only_in_suspend = false;
+    list[1].number_of_voters = VMIN_VOTERS;
+
+    return 0;
+}
+
 struct power_module HAL_MODULE_INFO_SYM = {
     .common = {
         .tag = HARDWARE_MODULE_TAG,
-        .module_api_version = POWER_MODULE_API_VERSION_0_2,
+        .module_api_version = POWER_MODULE_API_VERSION_0_5,
         .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = POWER_HARDWARE_MODULE_ID,
         .name = "QCOM Power HAL",
@@ -450,4 +683,7 @@ struct power_module HAL_MODULE_INFO_SYM = {
     .init = power_init,
     .powerHint = power_hint,
     .setInteractive = set_interactive,
+    .get_number_of_platform_modes = get_number_of_platform_modes,
+    .get_platform_low_power_stats = get_platform_low_power_stats,
+    .get_voter_list = get_voter_list
 };
