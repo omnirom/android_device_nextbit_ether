@@ -1,0 +1,3 @@
+allow init debugfs:file write;
+allow init property_socket:sock_file write;
+
