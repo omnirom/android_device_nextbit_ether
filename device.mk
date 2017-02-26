@@ -403,7 +403,6 @@ PRODUCT_PACKAGES += \
     a4wpservice \
     android.wipower \
     android.wipower.xml \
-    com.quicinc.wbcserviceapp \
     libwipower_jni \
     wipowerservice
 
