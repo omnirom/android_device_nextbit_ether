@@ -1,4 +1,3 @@
--app/com.quicinc.wbcserviceapp/com.quicinc.wbcserviceapp.apk
 -app/datastatusnotification/datastatusnotification.apk
 -app/fastdormancy/fastdormancy.apk
 -app/shutdownlistener/shutdownlistener.apk
@@ -106,8 +105,6 @@ etc/permissions/com.qti.dpmframework.xml
 etc/permissions/com.qti.location.sdk.xml
 etc/permissions/com.qualcomm.location.xml
 etc/permissions/com.quicinc.cne.xml
-etc/permissions/com.quicinc.wbcservice.xml
-etc/permissions/com.quicinc.wbc.xml
 etc/permissions/ConnectivityExt.xml
 etc/permissions/dpmapi.xml
 etc/permissions/qcnvitems.xml
@@ -124,8 +121,6 @@ framework/cneapiclient.jar
 framework/com.qti.dpmframework.jar
 framework/com.qti.location.sdk.jar
 framework/com.quicinc.cne.jar
-framework/com.quicinc.wbc.jar
-framework/com.quicinc.wbcservice.jar
 framework/ConnectivityExt.jar
 framework/dpmapi.jar
 -framework/qcnvitems.jar
@@ -136,7 +131,6 @@ framework/tcmclient.jar
 lib64/hw/fingerprint.msm8992.so
 lib64/hw/gps.default.so
 lib64/hw/sensors.msm8992.so
-lib64/hw/wbc_hal.default.so
 lib64/libcom_fingerprints_service.so
 lib64/libFIHNxp.so
 lib64/lib_fpc_tac_shared.so
@@ -148,12 +142,10 @@ lib64/libloc_eng.so
 -lib64/libril.so
 lib64/libtfa98xx_hal.so
 lib64/libtfa98xx.so
-lib64/libwbc_jni.so
 lib/hw/camera.msm8992.so
 lib/hw/fingerprint.msm8992.so
 lib/hw/gps.default.so
 lib/hw/sensors.msm8992.so
-lib/hw/wbc_hal.default.so
 lib/libcom_fingerprints_service.so
 lib/libFIHNxp.so
 lib/lib_fpc_tac_shared.so
@@ -171,7 +163,6 @@ lib/libqomx_core.so
 -lib/libril.so
 lib/libtfa98xx_hal.so
 lib/libtfa98xx.so
-lib/libwbc_jni.so
 -priv-app/CNEService/CNEService.apk
 -priv-app/com.qualcomm.location/com.qualcomm.location.apk
 -priv-app/dpmserviceapp/dpmserviceapp.apk
