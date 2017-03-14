@@ -1,4 +1,3 @@
-
 # msm specific files that need to be created on /data
 on post-fs-data
     mkdir /data/nfc
