@@ -341,9 +341,17 @@ vendor/lib/hw/keystore.msm8992.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
+vendor/lib/libactuator_ad5823_camera.so
+vendor/lib/libactuator_bu64244gwz_camera.so
+vendor/lib/libactuator_dw9714_camera.so
+vendor/lib/libactuator_dw9716_camera.so
 vendor/lib/libactuator_dw9761b_camcorder.so
 vendor/lib/libactuator_dw9761b_camera.so
 vendor/lib/libactuator_dw9761b.so
+vendor/lib/libactuator_lc898122_camera.so
+vendor/lib/libactuator_lc898212xd_camera.so
+vendor/lib/libactuator_ov8825_camera.so
+vendor/lib/libactuator_rohm_bu64243gwz_camera.so
 vendor/lib/libadiertac.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libadsprpc.so
