@@ -39,10 +39,8 @@
 #include "hint-data.h"
 #include "power-common.h"
 
-#define LOG_TAG "QCOMPowerHAL"
+#define LOG_TAG "QCOM PowerHAL"
 #include <utils/Log.h>
-
-#define INTERACTION_BOOST
 
 static void *qcopt_handle;
 static int (*perf_lock_acq)(unsigned long handle, int duration,
@@ -52,15 +50,18 @@ static struct list_node active_hint_list_head;
 
 static void *get_qcopt_handle()
 {
-    char qcopt_lib_path[PATH_MAX] = "libqti-perfd-client.so";
+    char qcopt_lib_path[PATH_MAX] = {0};
     void *handle = NULL;
 
     dlerror();
 
-    handle = dlopen(qcopt_lib_path, RTLD_NOW);
-	if (!handle) {
-	    ALOGE("Unable to open %s: %s\n", qcopt_lib_path,
-	    dlerror());
+    if (property_get("ro.vendor.extension_library", qcopt_lib_path,
+                NULL)) {
+        handle = dlopen(qcopt_lib_path, RTLD_NOW);
+        if (!handle) {
+            ALOGE("Unable to open %s: %s\n", qcopt_lib_path,
+                    dlerror());
+        }
     }
 
     return handle;
@@ -172,13 +173,13 @@ int get_scaling_governor(char governor[], int size)
     return 0;
 }
 
-int interaction(int duration, int num_args, int opt_list[])
+void interaction(int duration, int num_args, int opt_list[])
 {
 #ifdef INTERACTION_BOOST
-    int lock_handle = 0;
+    static int lock_handle = 0;
 
     if (duration < 0 || num_args < 1 || opt_list[0] == NULL)
-        return 0;
+        return;
 
     if (qcopt_handle) {
         if (perf_lock_acq) {
@@ -187,27 +188,7 @@ int interaction(int duration, int num_args, int opt_list[])
                 ALOGE("Failed to acquire lock.");
         }
     }
-    return lock_handle;
 #endif
-    return 0;
-}
-
-int interaction_with_handle(int lock_handle, int duration, int num_args, int opt_list[]) 
-{
-#ifdef INTERACTION_BOOST
-    if (duration < 0 || num_args < 1 || opt_list[0] == NULL)
-        return 0;
-
-    if (qcopt_handle) {
-        if (perf_lock_acq) {
-            lock_handle = perf_lock_acq(lock_handle, duration, opt_list, num_args);
-            if (lock_handle == -1)
-                ALOGE("Failed to acquire lock.");
-        }
-    }
-    return lock_handle;
-#endif
-    return 0;
 }
 
 void perform_hint_action(int hint_id, int resource_values[], int num_resources)
