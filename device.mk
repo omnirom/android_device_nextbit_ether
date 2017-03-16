@@ -107,12 +107,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # fluence multi-mic solution
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qc.sdk.audio.fluencetype=fluence \
+    ro.qc.sdk.audio.fluencetype=none \
     persist.audio.fluence.audiorec=false \
     persist.audio.fluence.voicecall=true \
     persist.audio.fluence.voicerec=false \
     persist.audio.fluence.speaker=true \
-    persist.audio.fluence.mode=broadside
+    persist.audio.fluence.mode=broadside \
+    tunnel.audio.encode = false \
+    audio_hal.period_size=192
 
 # stereo camcorder
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -120,12 +122,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # low audio flinger standby delay to reduce power consumption
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.audio.flinger_standbytime_ms=300
-
-# Camera2 API
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.camera.ts.monotonic=0 \
-    persist.camera.HAL3.enabled=1
+    ro.audio.flinger_standbytime_ms=300 \
+    persist.timed.enable=true
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -143,7 +141,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.frp.pst=/dev/block/bootdevice/by-name/config
+    ro.frp.pst=/dev/block/bootdevice/by-name/config \
+    af.fast_track_multiplier=1
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -224,7 +223,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.pcm.16bit.enable=true \
     audio.offload.pcm.24bit.enable=true \
     audio.offload.multiple.enabled=false \
-    audio.deep_buffer.media=true
+    audio.deep_buffer.media=false \
+    audio.offload.track.enable=true \
+    persist.dpm.feature=1 \
+    ro.hardware.nfc_nci=pn54x
 
 # voip
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -239,7 +241,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.cpp.duplication=false \
     ro.qc.sdk.camera.facialproc=false \
     ro.qc.sdk.gestures.camera=false
 
@@ -259,24 +260,22 @@ PRODUCT_PACKAGES += \
 
 # QC CABL feature
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qualcomm.cabl=2
+    ro.qualcomm.cabl=0
 
 # MSM8992 HAL settings
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.composition.type=c2d \
-    debug.egl.hw=1 \
     debug.mdpcomp.logs=0 \
-    debug.sf.hw=1 \
     persist.debug.wfd.enable=1 \
-    persist.demo.hdmirotationlock=false \
     persist.hwc.enable_vds=1 \
     persist.hwc.mdpcomp.enable=true \
     persist.hwc.ptor.enable=true \
     persist.mdpcomp.4k2kSplit=1 \
     persist.mdpcomp_perfhint=50 \
     persist.metadata_dynfps.disable=true \
-    persist.sys.wfd.virtual=0 \
-    ro.opengles.version=196609
+    ro.opengles.version=196610 \
+    ro.hdmi.enable=true \
+    persist.mm.sta.enable=0
 
 # OpenGLES Android Extension
 PRODUCT_COPY_FILES += \
@@ -318,7 +317,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.smoothstreaming=true \
     media.aac_51_output_enabled=true \
     vidc.debug.level=1 \
-    vidc.enc.dcvs.extra-buff-count=2
+    vidc.enc.dcvs.extra-buff-count=2 \
+    qcom.hw.aac.encoder=true \
+    media.stagefright.enable-player=true \
+    media.stagefright.enable-http=true \
+    media.stagefright.enable-aac=true \
+    media.stagefright.enable-qcp=true \
+    media.stagefright.enable-fma2dp=true \
+    media.stagefright.enable-scan=true \
+    mmp.enable.3g2=true \
+    av.debug.disable.pers.cache=true \
+    drm.service.enabled=true
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config \
@@ -331,7 +340,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.boot-dex2oat-threads=4 \
     dalvik.vm.dex2oat-threads=2 \
-    dalvik.vm.image-dex2oat-threads=4
+    dalvik.vm.image-dex2oat-threads=4 \
+    persist.fuse_sdcard=true
 
 PRODUCT_PACKAGES += \
     ebtables \
@@ -355,6 +365,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
+    rild.libargs=-d /dev/smd0 \
     ril.subscription.types=NV,RUIM
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -366,7 +377,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.sib16_support=1 \
     ro.data.large_tcp_window_size=true \
     ro.use_data_netmgrd=true \
-    ro.telephony.default_network=9
+    ro.telephony.default_network=9 \
+    persist.rild.nitz_plmn="" \
+    persist.rild.nitz_long_ons_0="" \
+    persist.rild.nitz_long_ons_1="" \
+    persist.rild.nitz_long_ons_2="" \
+    persist.rild.nitz_long_ons_3="" \
+    persist.rild.nitz_short_ons_0="" \
+    persist.rild.nitz_short_ons_1="" \
+    persist.rild.nitz_short_ons_2="" \
+    persist.rild.nitz_short_ons_3="" \
+    ril.subscription.types=NV,RUIM \
+    DEVICE_PROVISIONED=1 \
+    persist.radio.app_hw_mbn_path="/firmware/image/mdm/modem_pr/mcfg/configs/mcfg_hw/generic/common/msm8994/la/" \
+    persist.radio.VT_CAM_INTERFACE=1
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
@@ -396,16 +420,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml
 
-PRODUCT_PACKAGES += \
-    a4wpservice \
-    android.wipower \
-    android.wipower.xml \
-    libwipower_jni \
-    wipowerservice
-
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.bluetooth.emb_wp_mode=true \
-    ro.bluetooth.wipower=true
+    ro.bluetooth.emb_wp_mode=false \
+    ro.bluetooth.wipower=false
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
@@ -420,7 +437,8 @@ PRODUCT_COPY_FILES += \
 
 # Enable Wifi calling
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.data.iwlan.enable=true
+    persist.data.iwlan.enable=true \
+    mm.enable.qcom_parser=3379827 \
 
 PRODUCT_PACKAGES += \
     power.ether
