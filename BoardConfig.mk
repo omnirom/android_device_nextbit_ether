@@ -184,6 +184,8 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_PROVIDES_POWERHAL := true
 TARGET_USES_INTERACTION_BOOST := true
 
+BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp
+
 -include vendor/nextbit/ether/BoardConfigVendor.mk
 
 # Audio configuration file
