@@ -21,3 +21,4 @@
 /sys/devices/soc\.0/fdb00000\.qcom,kgsl-3d0/kgsl/kgsl-3d0/default_pwrlevel  u:object_r:sysfs_thermal:s0
 /sys/devices/soc\.0/fdb00000\.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk        u:object_r:sysfs_thermal:s0
 /sys/devices/system/cpu/cpu[0-9]+/cpufreq/scaling_governor    u:object_r:sysfs_devices_system_cpu:s0
+/sys/kernel/debug/rmt_storage/rfsa                                        u:object_r:debugfs_rfs_access:s0
