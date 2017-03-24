@@ -208,4 +208,7 @@ TARGET_USES_INTERACTION_BOOST := true
 
 BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp
 
+# Include system properties in separate system.prop
+TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
+
 -include vendor/nextbit/ether/BoardConfigVendor.mk
