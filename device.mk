@@ -131,10 +131,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdbdata/$(ACDB_TARGET)_Headset_cal.acdb:system/etc/acdbdata/$(ACDB_TARGET)/$(ACDB_TARGET)_Headset_cal.acdb \
     $(LOCAL_PATH)/audio/acdbdata/$(ACDB_TARGET)_Speaker_cal.acdb:system/etc/acdbdata/$(ACDB_TARGET)/$(ACDB_TARGET)_Speaker_cal.acdb
 
-# Camera
-PRODUCT_PACKAGES += \
-    SnapdragonCamera
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
