@@ -264,11 +264,3 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/wifi/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
-
-# Wireless Charging (a4wp/wipower)
-PRODUCT_PACKAGES += \
-    a4wpservice \
-    android.wipower \
-    android.wipower.xml \
-    libwipower_jni \
-    wipowerservice
