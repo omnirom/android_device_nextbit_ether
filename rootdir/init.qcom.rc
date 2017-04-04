@@ -41,6 +41,10 @@ on init
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
 
+
+    write /sys/block/zram0/comp_algorithm lz4
+    write /sys/block/zram0/max_comp_streams 4
+
     # NXP HAL expects /dev/pn54x
     symlink /dev/pn544 /dev/pn54x
 
@@ -291,7 +295,6 @@ on post-fs-data
     #Create PERFD deamon related dirs
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
-    rm /data/system/perfd/default_values
 
     # RIDL data
     mkdir /data/misc/SelfHost/ 0710 system shell
@@ -320,7 +323,7 @@ service ss_ramdump /system/bin/subsystem_ramdump
 service perfd /system/vendor/bin/perfd
    class main
    user root
-   group system
+   disabled
    socket perfd seqpacket 0666 root system
    writepid /dev/cpuset/system-background/tasks
 
@@ -510,7 +513,7 @@ service ftmd /system/bin/logwrapper /system/bin/ftmdaemon
 
 service port-bridge /system/bin/port-bridge /dev/mhi_pipe_32 /dev/ttyGS0
     class main
-    user radio system
+    user radio
     group radio system inet
     disabled
 
@@ -619,8 +622,8 @@ service wpa_supplicant /system/bin/wpa_supplicant \
 
 service cnss_diag /system/bin/cnss_diag -q -f
     class main
-    user root
-    group root
+    user system
+    group system wifi inet net_admin sdcard_rw media_rw diag
     disabled
 
 on property:cnss_diag.load=true
@@ -631,6 +634,8 @@ on property:cnss_diag.load=false
 
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
+    user system
+    group system inet net_admin wifi
 
 service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
@@ -808,14 +813,14 @@ on property:sys.qbcharger.enable=false
 service diag_mdlog_start /system/bin/diag_mdlog
     class late_start
     user shell
-    group system diag sdcard_rw sdcard_r media_rw
+    group system qcom_diag sdcard_rw sdcard_r media_rw
     disabled
     oneshot
 
 service diag_mdlog_stop /system/bin/diag_mdlog -k
     class late_start
     user shell
-    group system diag sdcard_rw sdcard_r media_rw
+    group system qcom_diag sdcard_rw sdcard_r media_rw
     disabled
     oneshot
 

@@ -42,7 +42,6 @@ PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/init.nbq.smartamp.rc:root/init.nbq.smartamp.rc \
     device/nextbit/ether/rootdir/init.nbq.target.rc:root/init.nbq.target.rc \
     device/nextbit/ether/rootdir/init.nbq.usb.rc:root/init.nbq.usb.rc \
-    device/nextbit/ether/rootdir/init.qcom.fs.rc:root/init.qcom.fs.rc \
     device/nextbit/ether/rootdir/init.qcom.rc:root/init.qcom.rc \
     device/nextbit/ether/rootdir/init.qcom.sh:root/init.qcom.sh \
     device/nextbit/ether/rootdir/init.target.rc:root/init.target.rc \
