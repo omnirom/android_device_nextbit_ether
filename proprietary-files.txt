@@ -336,8 +336,6 @@ vendor/lib64/libqmi_encdec.so
 vendor/lib64/libqmiservices.so
 vendor/lib64/libqmi.so
 vendor/lib64/libQSEEComAPI.so
-vendor/lib64/libqti-at.so
-vendor/lib64/libqti-gt.so
 vendor/lib64/libqti-perfd-client.so
 vendor/lib64/libqti_performance.so
 vendor/lib64/libQtiTether.so
@@ -832,8 +830,6 @@ vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc_pipe.so
 vendor/lib/libqomx_jpegenc.so
 vendor/lib/libQSEEComAPI.so
-vendor/lib/libqti-at.so
-vendor/lib/libqti-gt.so
 vendor/lib/libqti-perfd-client.so
 vendor/lib/libqti_performance.so
 vendor/lib/libQtiTether.so

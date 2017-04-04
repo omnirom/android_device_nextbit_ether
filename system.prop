@@ -115,9 +115,6 @@ dalvik.vm.image-dex2oat-threads=4
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
-ro.vendor.at_library=libqti-at.so
-ro.vendor.gt_library=libqti-gt.so
-sys.games.gt.prof=0
 
 # Radio
 persist.radio.app_hw_mbn_path=/firmware/image/mdm/modem_pr/mcfg/configs/mcfg_hw/generic/common/msm8994/la
