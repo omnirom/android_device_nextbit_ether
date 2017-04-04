@@ -79,10 +79,12 @@ static int process_video_encode_hint(void *metadata)
         if ((strncmp(governor, INTERACTIVE_GOVERNOR, strlen(INTERACTIVE_GOVERNOR)) == 0) &&
                 (strlen(governor) == strlen(INTERACTIVE_GOVERNOR))) {
             /* sched and cpufreq params
-             * A57 - offlines
-             * A53 - 4 cores online at 1.2GHz
+             * hispeed freq - 768 MHz
+             * target load - 90
+             * above_hispeed_delay - 40ms
+             * sched_small_tsk - 50
              */
-            int resource_values[] = {0x150C, 0x160C, 0x170C, 0x180C, 0x3DFF};
+            int resource_values[] = {0x2C07, 0x2F5A, 0x2704, 0x4032};
 
             perform_hint_action(video_encode_metadata.hint_id,
                     resource_values, sizeof(resource_values)/sizeof(resource_values[0]));
@@ -113,7 +115,6 @@ int power_hint_override(struct power_module *module, power_hint_t hint, void *da
 
 int set_interactive_override(struct power_module *module, int on)
 {
-    return HINT_HANDLED; /* Don't excecute this code path, not in use */
     char governor[80];
 
     if (get_scaling_governor(governor, sizeof(governor)) == -1) {
