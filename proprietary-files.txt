@@ -9,7 +9,6 @@ bin/cnss-daemon
 bin/cnss_diag
 bin/dpmd
 bin/energy-awareness
-bin/fingerprintd
 bin/hci_qcomm_init
 bin/imscmservice
 bin/imsdatadaemon
