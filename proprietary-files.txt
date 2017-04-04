@@ -923,6 +923,4 @@ vendor/lib/sensors.ssc.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
-vendor/media/LMspeed_508.emd
-vendor/media/PFFprec_600.emd
 vendor/qcril.db
