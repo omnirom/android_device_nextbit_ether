@@ -26,7 +26,6 @@ bin/pm-service
 bin/qmuxd
 bin/qseecomd
 bin/radish
-bin/rfs_access
 bin/rmt_storage
 bin/sensors.qcom
 bin/time_daemon
