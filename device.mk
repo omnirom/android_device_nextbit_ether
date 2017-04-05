@@ -132,7 +132,7 @@ PRODUCT_COPY_FILES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger_res_images
+    omni_charger_res_images
 
 # DeviceSettings for OmniGears
 PRODUCT_PACKAGES += \
