@@ -35,13 +35,3 @@ import /init.nbq.usb.rc
 on post-fs
     # set bt/wifi mac address from e2p
     exec - root root system -- /system/bin/init.nbq.mac.sh
-
-on boot
-    # update foreground cpuset now that processors are up
-    # foreground gets all CPUs except CPU 3
-    # CPU 3 is reserved for the top app
-    write /dev/cpuset/foreground/cpus 0-2,4-5
-    write /dev/cpuset/foreground/boost/cpus 4-5
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-2
-    write /dev/cpuset/top-app/cpus 0-5
