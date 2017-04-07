@@ -32,5 +32,5 @@ PRODUCT_MODEL := Robin
 PRODUCT_MANUFACTURER := Nextbit
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT="Nextbit/NBQ_00WW_FIH/NBQ_BSP:7.0/Robin_Nougat_57_u/00WW_Jenkins_57:user/test-keys" \
-    PRIVATE_BUILD_DESC="NBQ_00WW_FIH-user 7.0 Robin_Nougat_57_u 00WW_Jenkins_57 test-keys"
+    BUILD_FINGERPRINT="Nextbit/ether/ether:7.1.1/Robin_Nougat_91/00WW_Jenkins_91:user/release-keys" \
+    PRIVATE_BUILD_DESC="ether-user 7.1.1 Robin_Nougat_91 00WW_Jenkins_91 release-keys"
