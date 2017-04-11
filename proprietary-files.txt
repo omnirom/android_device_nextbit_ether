@@ -1,8 +1,10 @@
+-app/atfwd/atfwd.apk
 -app/datastatusnotification/datastatusnotification.apk
 -app/fastdormancy/fastdormancy.apk
 -app/shutdownlistener/shutdownlistener.apk
 -app/TimeService/TimeService.apk
 bin/adsprpcd
+bin/ATFWD-daemon
 bin/btnvtool
 bin/cnd
 bin/cnss-daemon
