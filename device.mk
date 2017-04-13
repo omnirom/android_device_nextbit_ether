@@ -238,11 +238,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
-    libbson \
     libcnefeatureconfig \
     libnl_2 \
     libprotobuf-cpp-full \
-    libqsap_sdk \
     librmnetctl \
     libxml2
 
