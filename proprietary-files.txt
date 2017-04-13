@@ -128,7 +128,6 @@ framework/QtiTelephonyServicelibrary.jar
 framework/tcmclient.jar
 lib64/hw/fingerprint.msm8992.so
 lib64/hw/sensors.msm8992.so
-lib64/hw/wbc_hal.default.so
 lib64/libcom_fingerprints_service.so
 lib64/libFIHNxp.so
 lib64/lib_fpc_tac_shared.so
@@ -140,7 +139,6 @@ lib64/libtfa98xx.so
 lib/hw/camera.msm8992.so
 lib/hw/fingerprint.msm8992.so
 lib/hw/sensors.msm8992.so
-lib/hw/wbc_hal.default.so
 lib/libcom_fingerprints_service.so
 lib/libFIHNxp.so
 lib/lib_fpc_tac_shared.so
@@ -162,9 +160,6 @@ lib/libtfa98xx.so
 -priv-app/QtiTetherService/QtiTetherService.apk
 -vendor/app/ims/ims.apk
 -vendor/app/imssettings/imssettings.apk
--vendor/app/SecProtect/SecProtect.apk
-vendor/bin/audioflacapp
-vendor/bin/fidodaemon
 vendor/bin/perfd
 vendor/bin/qti
 vendor/bin/slim_daemon
@@ -350,12 +345,9 @@ vendor/lib64/lib-rtpcommon.so
 vendor/lib64/lib-rtpcore.so
 vendor/lib64/lib-rtpdaemoninterface.so
 vendor/lib64/lib-rtpsl.so
-vendor/lib64/libSampleAuthJNI.so
 vendor/lib64/libscale.so
 vendor/lib64/libsd_sdk_display.so
 vendor/lib64/lib-sec-disp.so
-vendor/lib64/libSecureSampleAuthClient.so
-vendor/lib64/libSecureSampleAuthJNI.so
 vendor/lib64/libSecureUILib.so
 vendor/lib64/libsecureui.so
 vendor/lib64/libsecureuisvc_jni.so
@@ -844,12 +836,9 @@ vendor/lib/lib-rtpcommon.so
 vendor/lib/lib-rtpcore.so
 vendor/lib/lib-rtpdaemoninterface.so
 vendor/lib/lib-rtpsl.so
-vendor/lib/libSampleAuthJNI.so
 vendor/lib/libscale.so
 vendor/lib/libsd_sdk_display.so
 vendor/lib/lib-sec-disp.so
-vendor/lib/libSecureSampleAuthClient.so
-vendor/lib/libSecureSampleAuthJNI.so
 vendor/lib/libSecureUILib.so
 vendor/lib/libsecureui.so
 vendor/lib/libsecureuisvc_jni.so
