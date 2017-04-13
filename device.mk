@@ -189,7 +189,6 @@ PRODUCT_PACKAGES += \
 
 # Media
 PRODUCT_PACKAGES += \
-    libstagefrighthw \
     libc2dcolorconvert \
     libdivxdrmdecrypt \
     libOmxAacEnc \
@@ -197,8 +196,12 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
+    libOmxSwVencMpeg4 \
     libOmxVdec \
+    libOmxVdecHevc \
     libOmxVenc \
+    libOmxVidcCommon \
+    libmm-omxcore \
     libstagefrighthw
 
 PRODUCT_COPY_FILES += \
