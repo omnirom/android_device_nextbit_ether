@@ -102,9 +102,9 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     audiod \
+    libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessingdescriptors \
     libqcomvoiceprocessing
 
 PRODUCT_COPY_FILES += \
