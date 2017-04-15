@@ -894,9 +894,6 @@ case "$target" in
         configure_memory_parameters
         restorecon -R /sys/devices/system/cpu
 
-        # set GPU default power level to 5 (180MHz) instead of 4 (305MHz)
-        echo 5 > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
-
         echo 9 > /proc/sys/kernel/sched_upmigrate_min_nice
     ;;
 esac
