@@ -140,8 +140,8 @@ PRODUCT_PACKAGES += \
     omni_charger_res_images
 
 # DeviceSettings for OmniGears
-PRODUCT_PACKAGES += \
-    RobinParts
+#PRODUCT_PACKAGES += \
+#    RobinParts
 
 # Display
 PRODUCT_PACKAGES += \
