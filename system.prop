@@ -109,6 +109,7 @@ av.debug.disable.pers.cache=true
 persist.debug.sf.statistics=1
 media.stagefright.log-uri=1
 mm.enable.qcom_parser=3379827
+persist.media.treble_omx=false
 
 # dexopt
 dalvik.vm.boot-dex2oat-threads=4
