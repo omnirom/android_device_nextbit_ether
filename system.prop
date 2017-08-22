@@ -78,6 +78,7 @@ ro.oem_unlock_supported=1
 # Media
 mm.enable.smoothstreaming=true
 media.aac_51_output_enabled=true
+persist.media.treble_omx=false
 vidc.debug.level=1
 vidc.enc.dcvs.extra-buff-count=2
 
