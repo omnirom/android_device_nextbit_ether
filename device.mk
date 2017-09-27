@@ -165,6 +165,10 @@ PRODUCT_PACKAGES += \
     tinyplay \
     libtinyxml
 
+# Fingerprint
+PRODUCT_PACKAGES += \
+    fingerprint.msm8992
+
 #for android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files
