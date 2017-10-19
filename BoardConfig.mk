@@ -20,7 +20,6 @@ TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8992
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno418
 TARGET_BOOTLOADER_BOARD_NAME := ether
 
 TARGET_NO_BOOTLOADER := true
@@ -120,14 +119,9 @@ SNDRV_COMPRESS_SET_NEXT_TRACK_PARAM := true
 
 # Bluetooth
 TARGET_QCOM_BLUETOOTH_VARIANT := caf-msm8992
-BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
-BOARD_HAS_QCA_BT_ROME := true
 QCOM_BT_USE_BTNV := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
-
-# CNE and DPM
-BOARD_USES_QCNE := true
 
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
@@ -165,12 +159,6 @@ BOARD_USES_QC_TIME_SERVICES := true
 # Increase coldboot timeout
 TARGET_INCREASES_COLDBOOT_TIMEOUT := true
 
-# Added to indicate that protobuf-c is supported in this build
-PROTOBUF_SUPPORTED := true
-
-# Enable peripheral manager
-TARGET_PER_MGR_ENABLED := true
-
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
@@ -178,7 +166,6 @@ BOARD_SEPOLICY_DIRS += \
 
 # Wifi
 BOARD_HAS_QCOM_WLAN              := true
-BOARD_HAS_QCOM_WLAN_SDK          := true
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_qcwcn
 BOARD_WLAN_DEVICE                := qcwcn
