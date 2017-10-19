@@ -154,14 +154,6 @@ PRODUCT_PACKAGES += \
     libqdMetaData \
     memtrack.msm8992 \
 
-# Extra tools
-PRODUCT_PACKAGES += \
-    tinycap \
-    tinymix \
-    tinypcminfo \
-    tinyplay \
-    libtinyxml
-
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprint.msm8992
