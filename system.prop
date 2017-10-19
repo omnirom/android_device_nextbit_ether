@@ -1,6 +1,3 @@
-# custom acdb path
-audio.acdb.name=NBQ
-
 # fluence multi-mic solution
 ro.qc.sdk.audio.fluencetype=none
 persist.audio.fluence.audiorec=false
