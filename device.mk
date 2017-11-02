@@ -26,10 +26,10 @@ DEVICE_PACKAGE_OVERLAYS := \
     $(LOCAL_PATH)/overlay
 
 # setup dalvik vm configs.
-$(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-dalvik-heap.mk)
+$(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-dalvik-heap.mk)
 
 # setup base hwui configs
-$(call inherit-product, frameworks/native/build/phone-xxxhdpi-3072-hwui-memory.mk)
+$(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-hwui-memory.mk)
 
 # Init
 PRODUCT_COPY_FILES += \
