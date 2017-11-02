@@ -18,8 +18,8 @@ $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, vendor/nextbit/ether/device-vendor.mk)
 
 # Copy TWRP fstab - TWRP requires fstab v1
-PRODUCT_COPY_FILES += \
-    device/nextbit/ether/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
+#PRODUCT_COPY_FILES += \
+#    device/nextbit/ether/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
