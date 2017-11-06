@@ -19,6 +19,8 @@
 #
 # Everything in this directory will become public
 
+$(call inherit-product, device/nextbit/ether/hidl.mk)
+
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
