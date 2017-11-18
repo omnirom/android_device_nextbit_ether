@@ -5,7 +5,6 @@
 bin/adsprpcd
 bin/btnvtool
 bin/cnss-daemon
-bin/cnss_diag
 bin/dpmd
 bin/energy-awareness
 bin/hci_qcomm_init
@@ -13,7 +12,6 @@ bin/imscmservice
 bin/imsdatadaemon
 bin/imsqmidaemon
 bin/ims_rtp_daemon
-bin/ipacm-diag
 bin/irsc_util
 bin/loc_launcher
 bin/mm-pp-daemon
