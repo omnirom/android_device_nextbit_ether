@@ -349,7 +349,7 @@ vendor/lib64/libsecureuisvc_jni.so
 vendor/lib64/libsecureui_svcsock.so
 vendor/lib64/libsensor1.so
 vendor/lib64/libsensor_reg.so
-vendor/lib64/libsettings.so
+vendor/lib64/libsettings.so|4609cacca0a56dae2596687c8f5f2f9423d4d0d9
 vendor/lib64/libsi.so
 vendor/lib64/libslimclient.so
 vendor/lib64/libsmemlog.so
