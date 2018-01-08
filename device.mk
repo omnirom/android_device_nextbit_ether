@@ -37,12 +37,9 @@ $(call inherit-product, device/nextbit/ether/hidl.mk)
 # Init
 PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/fstab.qcom:root/fstab.qcom \
-    device/nextbit/ether/rootdir/init.nbq.charger.rc:root/init.nbq.charger.rc \
     device/nextbit/ether/rootdir/init.nbq.fingerprint.rc:root/init.nbq.fingerprint.rc \
     device/nextbit/ether/rootdir/init.nbq.led.rc:root/init.nbq.led.rc \
-    device/nextbit/ether/rootdir/init.nbq.nfc.rc:root/init.nbq.nfc.rc \
     device/nextbit/ether/rootdir/init.nbq.poweroff_charging.rc:root/init.nbq.poweroff_charging.rc \
-    device/nextbit/ether/rootdir/init.nbq.smartamp.rc:root/init.nbq.smartamp.rc \
     device/nextbit/ether/rootdir/init.nbq.target.rc:root/init.nbq.target.rc \
     device/nextbit/ether/rootdir/init.nbq.usb.rc:root/init.nbq.usb.rc \
     device/nextbit/ether/rootdir/init.qcom.rc:root/init.qcom.rc \
