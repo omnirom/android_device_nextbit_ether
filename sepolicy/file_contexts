@@ -26,3 +26,8 @@
 /sys/devices/soc\.0/qcom,cpubw\.[0-9]+/devfreq/qcom,cpubw\.[0-9]+/bw_hwmon(/.*)? u:object_r:sysfs_devices_system_cpu:s0
 /sys/devices/soc\.0/qcom,mincpubw\.[0-9]+/devfreq/qcom,mincpubw\.[0-9]+(/.*)?    u:object_r:sysfs_devices_system_cpu:s0
 /sys/devices/system/cpu/cpu[0-9]+/cpufreq/scaling_governor                       u:object_r:sysfs_devices_system_cpu:s0
+
+# Perfd
+/(vendor|system/vendor)/bin/perfd                                                u:object_r:perfd_exec:s0
+/data/system/perfd(/.*)?                                                         u:object_r:mpctl_data_file:s0
+/dev/socket/perfd                                                                u:object_r:mpctl_socket:s0
