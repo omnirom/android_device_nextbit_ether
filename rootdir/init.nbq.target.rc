@@ -28,7 +28,3 @@ import /init.nbq.fingerprint.rc
 import /init.nbq.led.rc
 import /init.nbq.poweroff_charging.rc
 import /init.nbq.usb.rc
-
-on post-fs
-    # set bt/wifi mac address from e2p
-    exec - root root system -- /system/bin/init.nbq.mac.sh

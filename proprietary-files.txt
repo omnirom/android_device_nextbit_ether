@@ -3,7 +3,6 @@
 -app/shutdownlistener/shutdownlistener.apk
 -app/TimeService/TimeService.apk
 bin/adsprpcd
-bin/btnvtool
 bin/cnss-daemon
 bin/dpmd
 bin/energy-awareness

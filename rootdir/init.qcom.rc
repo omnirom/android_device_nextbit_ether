@@ -206,9 +206,6 @@ service perfd /system/vendor/bin/perfd
     group system
     socket perfd seqpacket 0666 root system
 
-on property:vold.decrypt=trigger_restart_framework
-    start config_bt_addr
-
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
@@ -229,12 +226,6 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
     group system wakelock
-
-service config_bt_addr /system/bin/btnvtool -O
-    class core
-    user bluetooth
-    group bluetooth radio
-    oneshot
 
 on property:wc_transport.start_hci=true
     start start_hci_filter
