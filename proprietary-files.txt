@@ -137,7 +137,6 @@ lib64/lib_fpc_tac_shared.so
 lib64/libgps.utils.so
 lib64/libloc_core.so
 lib64/libloc_eng.so
--lib64/libril.so
 lib64/libtfa98xx_hal.so
 lib64/libtfa98xx.so
 lib/hw/camera.msm8992.so
@@ -158,7 +157,6 @@ lib/libmm-qcamera.so
 lib/libmorpho_image_stab4.so
 lib/libmorpho_movie_stab4.so
 lib/libqomx_core.so
--lib/libril.so
 lib/libtfa98xx_hal.so
 lib/libtfa98xx.so
 -priv-app/CNEService/CNEService.apk
