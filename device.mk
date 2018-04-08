@@ -31,6 +31,9 @@ $(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-dalvik-heap.mk)
 # setup base hwui configs
 $(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-hwui-memory.mk)
 
+# Include HALS
+$(call inherit-product, device/nextbit/ether/hidl.mk)
+
 # Init
 PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/fstab.qcom:root/fstab.qcom \
@@ -106,10 +109,6 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing
 
-PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
-    android.hardware.audio.effect@2.0-impl
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
     $(LOCAL_PATH)/audio/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
@@ -136,16 +135,11 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
     libbt-vendor
 
 # Camera
 PRODUCT_PACKAGES += \
     SnapdragonCamera
-
-PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
-    camera.device@3.2-impl
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -166,17 +160,6 @@ PRODUCT_PACKAGES += \
     libqdMetaData \
     memtrack.msm8992 \
 
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.allocator@2.0-impl \
-    android.hardware.graphics.allocator@2.0-service \
-    android.hardware.graphics.composer@2.1-impl \
-    android.hardware.graphics.mapper@2.0-impl \
-    android.hardware.memtrack@1.0-impl \
-
-# DRM
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl
-
 # Extra tools
 PRODUCT_PACKAGES += \
     tinycap \
@@ -188,18 +171,6 @@ PRODUCT_PACKAGES += \
 #for android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files
-
-# Fingerprint
-PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service
-
-# Gatekeeper HAL
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0-impl
-
-# GPS
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
@@ -218,16 +189,9 @@ PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
 
-# Keymaster HAL
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-impl
-
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8992
-
-PRODUCT_PACKGES += \
-    android.hardware.light@2.0-impl
 
 # Media
 PRODUCT_PACKAGES += \
@@ -258,7 +222,6 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.0-impl \
     com.android.nfc_extras \
     nfc_nci.qcom \
     NfcNci \
@@ -277,13 +240,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.ether
 
-PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-impl
-
-# Renderscript
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
-
 # RIL/Connectivity
 PRODUCT_PACKAGES += \
     ebtables \
@@ -299,18 +255,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config \
 
-# Sensors
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl
-
-# USB HAL
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service
-
-# Vibrator
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-impl
-
 # Wifi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
@@ -318,9 +262,6 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
-
-PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
