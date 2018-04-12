@@ -48,9 +48,6 @@ PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
 
 PRODUCT_COPY_FILES += \
-    device/nextbit/ether/rootdir/bin/init.nbq.mac.sh:system/bin/init.nbq.mac.sh
-
-PRODUCT_COPY_FILES += \
     device/nextbit/ether/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     device/nextbit/ether/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
 
