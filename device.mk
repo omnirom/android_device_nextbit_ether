@@ -227,7 +227,7 @@ PRODUCT_COPY_FILES += \
 # NFC
 PRODUCT_PACKAGES += \
     com.android.nfc_extras \
-    nfc_nci.qcom \
+    nfc_nci.msm8992 \
     NfcNci \
     Tag
 

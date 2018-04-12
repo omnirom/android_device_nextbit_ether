@@ -65,7 +65,7 @@ PRODUCT_PACKGES += \
 
 # Netd
 PRODUCT_PACKAGES += \
-android.system.net.netd@1.0
+    android.system.net.netd@1.0
 
 # NFC
 PRODUCT_PACKAGES += \
