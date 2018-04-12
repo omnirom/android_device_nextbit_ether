@@ -102,7 +102,7 @@ etc/permissions/qcrilhook.xml
 etc/permissions/qti_permissions.xml
 etc/permissions/qti_telephony_common.xml
 etc/permissions/telephonyservice.xml
-etc/sensors/hals.conf
+etc/sensors/hals.conf:vendor/etc/sensors/hals.conf
 etc/sensors/sensor_def_qcomdev.conf
 etc/sensors/sensor_fih_def_nbq_EVT1C_qcomdev.conf
 etc/sensors/sensor_fih_def_nbq_qcomdev.conf
