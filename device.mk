@@ -245,6 +245,7 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     libbson \
+    libcneapiclient \
     libcnefeatureconfig \
     libnl_2 \
     libprotobuf-cpp-full \
