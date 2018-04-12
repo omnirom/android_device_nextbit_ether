@@ -33,7 +33,7 @@ ro.audio.flinger_standbytime_ms=300
 ro.sf.lcd_density=420
 
 # Factory Reset Protection
-ro.frp.pst=/dev/block/bootdevice/by-name/config
+ro.frp.pst=/dev/block/platform/soc.0/f9824900.sdhci/by-name/config
 
 # Audio - Speaker Protection
 persist.speaker.prot.enable=false
