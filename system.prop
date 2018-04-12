@@ -56,6 +56,16 @@ use.voice.path.for.pcm.voip=true
 bluetooth.enable_timeout_ms=12000
 bluetooth.hfp.client=1
 qcom.bluetooth.soc=rome
+ro.bluetooth.hfp.ver=1.6
+ro.bluetooth.dun=true
+ro.bluetooth.sap=true
+ro.qualcomm.bluetooth.ftp=true
+ro.qualcomm.bluetooth.hfp=true
+ro.qualcomm.bluetooth.hsp=true
+ro.qualcomm.bluetooth.map=true
+ro.qualcomm.bluetooth.nap=true
+ro.qualcomm.bluetooth.opp=true
+ro.qualcomm.bluetooth.pbap=true
 
 # Camera
 ro.qc.sdk.camera.facialproc=false
