@@ -169,3 +169,5 @@ persist.timed.enable=true
 #
 persist.fuse_sdcard=true
 
+# DPM
+persist.dpm.feature=0
