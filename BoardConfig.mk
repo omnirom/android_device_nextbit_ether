@@ -182,6 +182,10 @@ endif
 TARGET_PROVIDES_POWERHAL := true
 TARGET_USES_INTERACTION_BOOST := true
 
+
+USE_SENSOR_MULTI_HAL := true
+BOARD_SENSOR_HAL_SUFFIX := $(TARGET_BOARD_PLATFORM)
+
 # Include system properties in separate system.prop
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 
