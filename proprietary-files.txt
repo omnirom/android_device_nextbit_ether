@@ -118,7 +118,6 @@ framework/QtiTelephonyServicelibrary.jar
 framework/tcmclient.jar
 lib64/hw/fingerprint.msm8992.so:vendor/lib64/hw/fingerprint.vendor.msm8992.so
 lib64/hw/gps.default.so
-lib64/hw/sensors.msm8992.so
 lib64/libcom_fingerprints_service.so
 lib64/libFIHNxp.so
 lib64/lib_fpc_tac_shared.so
@@ -132,7 +131,6 @@ lib64/libtfa98xx.so
 lib/hw/camera.msm8992.so
 lib/hw/fingerprint.msm8992.so:vendor/lib/hw/fingerprint.vendor.msm8992.so
 lib/hw/gps.default.so
-lib/hw/sensors.msm8992.so
 lib/libcom_fingerprints_service.so
 lib/libFIHNxp.so
 lib/lib_fpc_tac_shared.so
