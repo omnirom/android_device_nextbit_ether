@@ -106,6 +106,8 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 BOARD_FLASH_BLOCK_SIZE := 131072
 
+BOARD_ROOT_EXTRA_FOLDERS := bt_firmware firmware persist securefs
+
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
 # GPS
