@@ -54,6 +54,8 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.qcom
 
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
+BOARD_ROOT_EXTRA_FOLDERS := bt_firmware firmware persist securefs
+
 # Kernel
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE :=  4096
