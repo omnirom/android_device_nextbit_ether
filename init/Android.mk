@@ -8,6 +8,6 @@ LOCAL_CFLAGS := -Wall
 LOCAL_SRC_FILES := init_ether.cpp
 LOCAL_MODULE := libinit_ether
 
-LOCAL_STATIC_LIBRARIES := libbase
+LOCAL_STATIC_LIBRARIES := libbase libselinux
 
 include $(BUILD_STATIC_LIBRARY)
