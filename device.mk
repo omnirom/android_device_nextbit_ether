@@ -130,6 +130,7 @@ PRODUCT_PACKAGES += \
     init.nbq.usb.rc \
     init.qcom.bt.sh \
     init.qcom.fs.rc \
+    init.qcom.post_boot.sh \
     init.qcom.rc \
     init.qcom.sh \
     init.target.rc \
@@ -228,8 +229,8 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-service-qti \
-    init.nbq.power.sh
+    android.hardware.power@1.0-impl \
+    power.ether
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/perf-profiles/perf-profile1.conf:system/vendor/etc/perf-profile0.conf \

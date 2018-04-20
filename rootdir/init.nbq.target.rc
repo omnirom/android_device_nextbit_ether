@@ -36,10 +36,6 @@ on early-init
     write /proc/sys/vm/page-cluster 0
 
 on boot
-    # execute script to set initial CPU settings
-    # don't run as a service to avoid race conditions
-    exec - root root system -- /system/bin/init.nbq.power.sh
-
     # update foreground cpuset now that processors are up
     # foreground gets all CPUs except CPU 3
     # CPU 3 is reserved for the top app
@@ -48,10 +44,6 @@ on boot
     write /dev/cpuset/background/cpus 0-2
     write /dev/cpuset/system-background/cpus 0-2
     write /dev/cpuset/top-app/cpus 0-5
-
-    # adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
 
 on property:sys.boot_completed=1
     # Enable ZRAM on boot_complete
