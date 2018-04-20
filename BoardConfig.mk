@@ -60,6 +60,7 @@ BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
+TARGET_QCOM_BLUETOOTH_VARIANT := caf-msm8998
 BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
@@ -125,7 +126,7 @@ BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x01000000
 
 TARGET_KERNEL_SOURCE := kernel/nextbit/msm8992
-TARGET_KERNEL_CONFIG := lineageos_ether_defconfig
+TARGET_KERNEL_CONFIG := omni_ether_defconfig
 TARGET_KERNEL_ARCH := arm64
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
@@ -140,7 +141,7 @@ TARGET_PROVIDES_KEYMASTER := true
 TARGET_PROVIDES_LIBLIGHT := true
 
 # NFC
-BOARD_NFC_CHIPSET := pn547
+NXP_CHIP_TYPE := PN547C2
 BOARD_NFC_HAL_SUFFIX := $(TARGET_BOARD_PLATFORM)
 
 # Power
@@ -151,16 +152,19 @@ BOARD_POWER_CUSTOM_BOARD_LIB := libpower_ether
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_USES_QCOM_BSP := true
+
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8992
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8992
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8992
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.qcom
 
-# RIL
-TARGET_RIL_VARIANT := caf
-
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-include device/qcom/sepolicy/legacy-sepolicy.mk
+include vendor/omni/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     $(DEVICE_PATH)/sepolicy
 
@@ -177,7 +181,7 @@ BOARD_WLAN_DEVICE                := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
 
-TARGET_USES_QCOM_WCNSS_QMI       := true
+#TARGET_USES_QCOM_WCNSS_QMI       := true
 TARGET_USES_WCNSS_MAC_ADDR_REV   := true
 
 WIFI_DRIVER_FW_PATH_STA          := "sta"

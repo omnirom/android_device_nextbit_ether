@@ -43,7 +43,6 @@ PRODUCT_PACKAGES += \
     tinymix
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/audio/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:system/vendor/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/vendor/etc/audio_policy.conf \
@@ -70,8 +69,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     camera.device@3.2-impl \
-    camera.msm8992 \
-    Snap
+    camera.msm8992
+
+# Charger
+
+PRODUCT_PACKAGES += \
+    omni_charger_res_images
 
 # Display
 PRODUCT_PACKAGES += \
@@ -290,10 +293,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
 
 # setup dalvik vm configs.
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
+$(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-dalvik-heap.mk)
 
 # setup base hwui configs
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
+$(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-hwui-memory.mk)
 
 # Call the proprietary setup
 $(call inherit-product, vendor/nextbit/ether/ether-vendor.mk)
