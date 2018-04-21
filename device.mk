@@ -301,4 +301,4 @@ $(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-dalvik-heap.mk)
 $(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-hwui-memory.mk)
 
 # Call the proprietary setup
-$(call inherit-product, vendor/nextbit/ether/ether-vendor.mk)
+$(call inherit-product, vendor/nextbit/ether/device-vendor.mk)
