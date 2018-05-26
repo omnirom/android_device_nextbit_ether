@@ -31,10 +31,13 @@
 
 #include <android-base/file.h>
 #include <android-base/properties.h>
+#include <android-base/logging.h>
 #include <android-base/strings.h>
 
 #include "property_service.h"
-#include "vendor_init.h"
+
+namespace android {
+namespace init {
 
 using android::base::GetProperty;
 using android::base::ReadFileToString;
@@ -78,3 +81,6 @@ void vendor_load_properties()
 {
     init_alarm_boot_properties();
 }
+
+} //namespace init
+} //namespace android
