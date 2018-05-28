@@ -231,7 +231,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
-    libcneapiclient \
+    libbson \
+    libcnefeatureconfig \
+    lib_nl2 \
     librmnetctl \
     libxml2
 
@@ -279,6 +281,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/wifi/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
+
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
+    android.hidl.manager@1.0
 
 # setup dalvik vm configs.
 $(call inherit-product, vendor/omni/config/phone-xxxhdpi-3072-dalvik-heap.mk)

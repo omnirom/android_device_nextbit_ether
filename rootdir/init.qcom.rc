@@ -145,6 +145,20 @@ on post-fs-data
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
 
+    # Create the directories used by CnE subsystem
+    mkdir /data/connectivity 0771 system system
+    chown system system /data/connectivity
+
+    # Create the directories used by DPM subsystem
+    mkdir /data/dpm 0771 system system
+    chown system system /data/dpm
+
+    mkdir /data/dpm/fdMgr 0771 system system
+    chown system system /data/dpm/fdMgr
+
+    mkdir /data/dpm/nsrm 0771 system system
+    chown system system /data/dpm/nsrm
+
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
 
@@ -168,6 +182,10 @@ on post-fs-data
     mkdir /data/misc/location/gpsone_d 0770 system gps
     mkdir /data/misc/location/quipc 0770 gps system
     mkdir /data/misc/location/gsiff 0770 gps gps
+
+    # Create directory from IMS services
+    mkdir /data/shared 0755
+    chown system system /data/shared
 
     # Create directory for FOTA
     mkdir /data/fota 0771
@@ -199,10 +217,52 @@ service perfd /system/vendor/bin/perfd
     socket perfd seqpacket 0666 root system
     writepid /dev/cpuset/system-background/tasks
 
+on property:persist.env.fastdorm.enabled=true
+    setprop persist.radio.data_no_toggle 1
+
+service cnd /vendor/bin/cnd
+    class main
+    socket cnd stream 660 root inet
+
+service dpmd /vendor/bin/dpmd
+    class late_start
+    socket dpmd stream 660 root system
+
 service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class main
     user root
     oneshot
+
+service imsqmidaemon /vendor/bin/imsqmidaemon
+    class main
+    user system
+    socket ims_qmid stream 0660 system radio
+    group radio log diag
+
+service imsdatadaemon /vendor/bin/imsdatadaemon
+    class main
+    user system
+    socket ims_datad stream 0660 system radio
+    group system wifi radio inet log diag
+    disabled
+
+on property:sys.ims.QMI_DAEMON_STATUS=1
+    start imsdatadaemon
+
+service ims_rtp_daemon /vendor/bin/ims_rtp_daemon
+    class main
+    user system
+    socket ims_rtpd stream 0660 system radio
+    group radio diag inet log
+    disabled
+
+on property:sys.ims.DATA_DAEMON_STATUS=1
+    start ims_rtp_daemon
+
+service imscmservice /vendor/bin/imscmservice
+    class main
+    user system
+    group radio diag inet log
 
 service rmt_storage /vendor/bin/rmt_storage
     class core
@@ -303,6 +363,11 @@ service cnss-daemon /vendor/bin/cnss-daemon -n -l
     class late_start
     user system
     group system inet net_admin wifi
+
+service loc_launcher /vendor/bin/loc_launcher
+    #loc_launcher will start as root and set its uid to gps
+    class late_start
+    group gps inet net_raw diag net_admin wifi
 
 service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
