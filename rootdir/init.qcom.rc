@@ -215,7 +215,6 @@ service perfd /system/vendor/bin/perfd
     user root
     group system
     socket perfd seqpacket 0666 root system
-    writepid /dev/cpuset/system-background/tasks
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -336,7 +335,6 @@ service sensors /vendor/bin/sensors.qcom
     class late_start
     user root
     group root system
-    writepid /dev/cpuset/system-background/tasks
     disabled
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
