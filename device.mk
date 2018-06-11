@@ -230,8 +230,10 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-service-qti \
-    init.nbq.power.sh
+    power.ether
+
+PRODUCT_COPY_FILES += \
+    device/nextbit/ether/rootdir/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
 
 # Radio
 PRODUCT_PACKAGES += \
